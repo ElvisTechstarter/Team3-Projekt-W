@@ -11,4 +11,4 @@ JeddebookRouter.get("/all", async (req, res) => {
   res.status(StatusCodes.OK).send(DE_EN_entries);
 });
 
-module.exports = { TodosRouter: JeddebookRouter };
+module.exports = { JeddebookRouter: JeddebookRouter };

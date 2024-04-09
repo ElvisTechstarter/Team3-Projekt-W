@@ -1,10 +1,11 @@
 const { DataTypes } = require("sequelize");
-const WoerterbuchSequelize = require("../setup/database");
+const dbSequelize = require("../setup/database");
 
 // Define the jeddebook_de_en model
 
-const jeddebook_de_en = WoerterbuchSequelize.define(
-  "jeddebook_de_en",
+const jeddebook_de_en = dbSequelize.define(
+  //Shema name
+  "de_en",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -20,8 +21,7 @@ const jeddebook_de_en = WoerterbuchSequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-  },
-  { tableName: "jeddebook_de_en_table" }
+  }
 );
 
 module.exports = jeddebook_de_en;
