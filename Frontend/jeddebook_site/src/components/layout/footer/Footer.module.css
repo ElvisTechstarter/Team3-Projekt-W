@@ -1,0 +1,7 @@
+@import "../../../styles/GlobalVars.css";
+
+.mainContainer {
+  width: 100vw;
+  min-height: 100px;
+  background-color: var(--primary-color);
+}
