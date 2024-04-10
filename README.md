@@ -2,6 +2,8 @@
 
 ## Historie:
 
+TEST123
+
 Setup npm init
 Installed cors, dotenv, sequelize, body-parser, http-status-codes
 installad as dev: nodemon, jest, supertest
