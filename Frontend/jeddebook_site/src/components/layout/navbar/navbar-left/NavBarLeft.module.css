@@ -6,8 +6,10 @@
 }
 
 .logo {
-  width: 70px;
-  border-radius: 15px;
+  height: 135px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  margin-left: -50px;
 }
 @media screen and (min-width: 320px) {
 }

@@ -19,23 +19,27 @@ function NavBarRight() {
       <input
         className={styles.username}
         type="text"
-        placeholder="username"
+        placeholder="   username"
         value={username}
         onChange={handleUsernameChange}
       />
+      <div className={styles.spacer} />
       <input
         className={styles.password}
         type="password"
-        placeholder="password"
+        placeholder="   password"
         value={password}
         onChange={handlePasswordChange}
       />
-
+      <div className={styles.spacer} />
       <div className={styles.buttonContainer}>
-        <StandardBtn text={"Login"} />
+        <StandardBtn text={"Login"} style={{ fontWeight: 500 }} />
       </div>
       <div className={styles.spacer} />
-      <StandardBtn text={"Register"} />
+      <StandardBtn text={"Register"} style={{ fontWeight: 500 }} />
+      <div className={styles.spacer} />
+      <StandardBtn text={"Game"} style={{ fontWeight: 500 }} />
+      <div className={styles.marginright} />
     </div>
   );
 }

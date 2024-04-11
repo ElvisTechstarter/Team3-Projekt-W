@@ -2,14 +2,27 @@
   height: 100%;
   width: max-content;
   display: flex;
-  align-items: center;
+  align-items: last baseline;
   flex-direction: column;
   margin-top: 8px;
+  margin-bottom: 20px;
+}
+
+.buttonContainer {
+  margin-left: 30px;
 }
 
 .spacer {
-  width: 4px;
-  height: 4px;
+  width: 8px;
+  height: 8px;
+}
+.spacermiddle {
+  width: 100px;
+  height: 8px;
+}
+
+.marginright {
+  width: 50px;
 }
 .logImg {
   width: 50px;
@@ -22,7 +35,13 @@
   }
 }
 .username {
+  width: 100px;
+  height: 25px;
+  border-radius: 8px;
 }
 
 .password {
+  width: 100px;
+  height: 25px;
+  border-radius: 8px;
 }
