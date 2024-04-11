@@ -1,11 +1,11 @@
 const { DataTypes } = require("sequelize");
 const dbSequelize = require("../setup/database");
 
-// Define the jeddebook_de_en model
+// Define the user_db model
 
-const jeddebook_de_en = dbSequelize.define(
+const user_db = dbSequelize.define(
   //Schema name
-  "de_en",
+  "users",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -13,15 +13,25 @@ const jeddebook_de_en = dbSequelize.define(
       autoIncrement: true,
       allowNull: false,
     },
-    de_entry: {
+    user_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    en_entry: {
+    user_mail: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+
+    user_pw: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+
+    user_history: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
   }
 );
 
-module.exports = jeddebook_de_en;
+module.exports = user_db;
