@@ -11,7 +11,7 @@
 }
 
 .translationContainer {
-  display: flex;
+  flex-direction: column;
 }
 
 .translateOutputContainer {
