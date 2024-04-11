@@ -13,11 +13,19 @@ function HomePage() {
   }
   return (
     <div className={styles.mainContainer}>
-      <div> This is my homepage</div>
-      <LoadingDiv />
-      <Checkbox isChecked={stayLoggedIn} onClick={onClickStayLoggedIn} />
-      <TranslateInput />
-      <TranslateOutput />
+      <div className={styles.headerContainer}>
+        <div>This is my homepage</div>
+        <LoadingDiv />
+        <Checkbox isChecked={stayLoggedIn} onClick={onClickStayLoggedIn} />
+      </div>
+      <div className={styles.translationContainer}>
+        <div className={styles.translateInputContainer}>
+          <TranslateInput />
+        </div>
+        <div className={styles.translateOutputContainer}>
+          <TranslateOutput />
+        </div>
+      </div>
     </div>
   );
 }

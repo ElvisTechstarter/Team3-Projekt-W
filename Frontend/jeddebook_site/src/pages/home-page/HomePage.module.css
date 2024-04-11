@@ -1,4 +1,27 @@
 .mainContainer {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   background-color: rgb(184, 216, 236);
+}
+
+.headerContainer {
+  padding: 20px;
+  background-color: rgba(227, 16, 16, 0.8);
+}
+
+.translationContainer {
+  display: flex;
+}
+
+.translateOutputContainer {
+  flex: 1;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.translateInputContainer {
+  flex: 1;
+  padding: 20px;
+  background-color: rgba(18, 47, 110, 0.8);
 }
