@@ -1,0 +1,11 @@
+.myBtn {
+  padding: 4px 8px;
+  border-radius: 8px;
+  color: rgb(0, 0, 0);
+  margin: 2px;
+  background-color: var(--primary-color);
+  cursor: pointer;
+  &:hover {
+    background-color: var(--secondary-color);
+  }
+}

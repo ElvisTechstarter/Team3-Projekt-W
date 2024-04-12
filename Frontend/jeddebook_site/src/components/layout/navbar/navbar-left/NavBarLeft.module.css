@@ -1,0 +1,15 @@
+.mainContainer {
+  height: 100%;
+  width: max-content;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 135px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  margin-left: -50px;
+}
+@media screen and (min-width: 320px) {
+}
