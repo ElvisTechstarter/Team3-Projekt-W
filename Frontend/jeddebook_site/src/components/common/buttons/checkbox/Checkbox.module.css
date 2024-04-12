@@ -1,0 +1,16 @@
+.mainContainer {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: aqua;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .isChecked {
+    background-color: black;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+  }
+}
