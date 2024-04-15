@@ -1,8 +1,10 @@
 import StandardBtn from "../../../common/buttons/standard-btn";
 import styles from "./NavBarRight.module.css";
 import React, { useState } from "react";
+import LoginButtonPopup from "./login-button-popup/LoginButtonPopup";
 
 function NavBarRight() {
+  const [LoginButtonPopup, setLoginButtonPopup] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -16,6 +18,10 @@ function NavBarRight() {
 
   return (
     <div className={styles.mainContainer}>
+      {showLoginButtonPopup && (
+        <AddonClickClose={onClickShowAddTodo} setTodos={setTodos} />
+      )}
+      <ShowAddTodoBtn setShowTodo={onClickShowAddTodo} />
       <input
         className={styles.username}
         type="text"
