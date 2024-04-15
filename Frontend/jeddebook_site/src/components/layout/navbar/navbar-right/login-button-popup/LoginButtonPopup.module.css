@@ -1,0 +1,12 @@
+.container {
+  position: absolute;
+  bottom: 64px;
+  padding: 16px;
+  border-radius: 16px;
+
+  background-color: var(--primary-color);
+  &:hover {
+    cursor: pointer;
+    background-color: var(--secondary-color);
+  }
+}
