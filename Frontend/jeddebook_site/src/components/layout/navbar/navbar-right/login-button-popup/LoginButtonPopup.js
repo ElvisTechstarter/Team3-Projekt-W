@@ -18,7 +18,7 @@ function LoginButtonPopup({ onClose, onLogin }) {
         <input type="password" placeholder="Password" />
         <button onClick={handleLogin}>Login</button>
         <div style={{ height: "5px" }} />
-        <button onClick={onClose}>Close</button>
+        <button onClick={onClose}>Cancel</button>
       </div>
     </div>
   );

@@ -18,9 +18,9 @@ function RegisterButtonPopup({ onClose, onRegister }) {
         <input type="password" placeholder="password" />
         <input type="repeat password" placeholder="repeat password" />
         <input type="text" placeholder="e-mail address" />
-        <button onClick={handleRegister}>Let's go!</button>
+        <button onClick={handleRegister}>Complete Registration</button>
         <div style={{ height: "5px" }} />
-        <button onClick={onClose}>Close</button>
+        <button onClick={onClose}>Cancel</button>
       </div>
     </div>
   );
