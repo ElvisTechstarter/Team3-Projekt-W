@@ -9,15 +9,49 @@
   left: 0;
   background-color: rgba(36, 36, 36, 0.8);
 }
+
 .popup {
   display: flex;
   flex-direction: column;
+  text-align: center;
   padding: 16px;
   border-radius: 16px;
-
   background-color: var(--primary-color);
+}
+
+.popup h2 {
+  color: var(--background-color);
+  font-size: 24px;
+  margin: 0 auto 16px;
+  text-align: center;
+}
+
+.popup input {
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: none;
+}
+
+.popup button {
+  width: 100%;
+  padding: 12px 24px;
+  border: 6px solid;
+  border-radius: 8px;
+  border-color: white;
+  background-color: var(--background-color);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+
+  transition: background-color 0.3s; /* Animiere Farbänderungen */
+
   &:hover {
     cursor: pointer;
     background-color: var(--secondary-color);
+
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
   }
 }
