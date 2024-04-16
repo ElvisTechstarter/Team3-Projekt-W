@@ -1,6 +1,6 @@
 import styles from "./TranslateInput.module.css";
-import axios from "axios";
 import React, { useState } from "react";
+import { handleSearch } from "../../../../utils/databaseRequests";
 
 function TranslateInput({ onSearch, onClear }) {
   const [inputValue, setInputValue] = useState("");
@@ -9,30 +9,13 @@ function TranslateInput({ onSearch, onClear }) {
     setInputValue(event.target.value);
   };
 
-  const handleSearch = async () => {
-    try {
-      // Sende die Daten an deinen Express-Server
-      const response = await axios.get(
-        "http://localhost:5050/v1/jeddebook/byEntry",
-        {
-          params: { query: inputValue },
-        }
-      );
-      console.log("Antwort vom Server:", response.data);
-      //So greift man auf die data zu
-      console.log(response.data.de_entry);
-    } catch (error) {
-      console.error("Fehler bei der Anfrage:", error.message);
-    }
-  };
-
   const handleClear = () => {
     setInputValue("");
   };
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
-      handleSearch(); // Suche auslösen, wenn Enter gedrückt wird
+      handleSearch(inputValue); // Suche auslösen, wenn Enter gedrückt wird
     }
   };
 
@@ -46,7 +29,10 @@ function TranslateInput({ onSearch, onClear }) {
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
       />
-      <button className={styles.searchButton} onClick={handleSearch}>
+      <button
+        className={styles.searchButton}
+        onClick={() => handleSearch(inputValue)}
+      >
         🔍
       </button>
       <button className={styles.clearButton} onClick={handleClear}>
