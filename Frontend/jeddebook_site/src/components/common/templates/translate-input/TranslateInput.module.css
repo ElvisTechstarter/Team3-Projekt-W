@@ -1,20 +1,37 @@
-/* Container for the input field and button */
 .mainContainer {
-  width: 80%; /* To position the button inside the input field */
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center; /* Horizontal zentrieren */
+  align-items: center; /* Vertikal zentrieren */
 }
 
-/* Search input field */
 .searchInput {
-  width: 95%; /* Full width of the container */
-  padding: 10px; /* Add some padding for better spacing */
-  border: 1px solid #ccc; /* Add a border for visual separation */
-  border-radius: 4px; /* Rounded corners */
-  background-image: url(""); /* Add your magnifying glass icon */
-  background-repeat: no-repeat;
-  background-size: 20px; /* Adjust the size of the icon */
-  padding-right: 30px; /* Space for the icon */
+  width: 60%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  padding-right: 20px;
+  padding-left: 20px;
+  box-sizing: border-box;
+}
+
+.searchButton,
+.clearButton {
+  position: relative;
+  top: 50%;
+  transform: translateY(-10%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
 }
 
 .searchButton {
-  display: flex;
+  right: 70px;
+}
+
+.clearButton {
+  right: 75px;
 }

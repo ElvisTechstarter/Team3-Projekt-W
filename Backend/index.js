@@ -8,6 +8,7 @@ const { PORT } = process.env;
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
 app.use("/v1", AppRouter);
 
