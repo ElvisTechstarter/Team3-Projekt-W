@@ -1,11 +1,11 @@
 // LoginButtonPopup.js
 import React from "react";
-import styles from "./LoginButtonPopup.module.css";
+import styles from "./RegisterButtonPopup.module.css";
 
-function LoginButtonPopup({ onClose, onLogin }) {
-  const handleLogin = () => {
+function RegisterButtonPopup({ onClose, onRegister }) {
+  const handleRegister = () => {
     // Hier könntest du Validierung und weitere Logik für den Login implementieren
-    onLogin();
+    onRegister();
   };
   function onClickChild(event) {
     event.stopPropagation();
@@ -13,14 +13,15 @@ function LoginButtonPopup({ onClose, onLogin }) {
   return (
     <div className={styles.container} onClick={onClose}>
       <div className={styles.popup} onClick={onClickChild}>
-        <h2>Login</h2>
+        <h2>Register</h2>
         <input type="text" placeholder="Username" />
         <input type="password" placeholder="Password" />
-        <button onClick={handleLogin}>Login</button>
+        <input type="repeat password" placeholder="Repeat password" />
+        <button onClick={handleRegister}>Register</button>
         <button onClick={onClose}>Close</button>
       </div>
     </div>
   );
 }
 
-export default LoginButtonPopup;
+export default RegisterButtonPopup;

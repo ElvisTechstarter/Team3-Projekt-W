@@ -1,10 +1,13 @@
+// NavBarRight.js
+import React, { useState } from "react";
 import StandardBtn from "../../../common/buttons/standard-btn";
 import styles from "./NavBarRight.module.css";
-import React, { useState } from "react";
 import LoginButtonPopup from "./login-button-popup/LoginButtonPopup";
+import RegisterButtonPopup from "./register-button-popup/RegisterButtonPopup";
 
 function NavBarRight() {
-  const [LoginButtonPopup, setLoginButtonPopup] = useState(false);
+  const [showLoginButtonPopup, setShowLoginButtonPopup] = useState(false);
+  const [showRegisterButtonPopup, setShowRegisterButtonPopup] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -16,12 +19,45 @@ function NavBarRight() {
     setPassword(event.target.value);
   };
 
+  const handleLogin = () => {
+    // Hier kannst du die Login-Logik implementieren
+    console.log(
+      "Logging in with username:",
+      username,
+      "and password:",
+      password
+    );
+    // Nach dem Login kannst du das Popup schließen
+    setShowLoginButtonPopup(false);
+  };
+
+  const handleRegister = () => {
+    // Hier kannst du die Register-Logik implementieren
+    console.log(
+      "Registering user with username:",
+      username,
+      "and password:",
+      password
+    );
+    // Nach der Registrierung kannst du das Popup schließen
+    setShowRegisterButtonPopup(false);
+  };
+
   return (
     <div className={styles.mainContainer}>
       {showLoginButtonPopup && (
-        <AddonClickClose={onClickShowAddTodo} setTodos={setTodos} />
+        <LoginButtonPopup
+          onClose={() => setShowLoginButtonPopup(false)}
+          onLogin={handleLogin}
+          onRegister={() => setShowRegisterButtonPopup(true)}
+        />
       )}
-      <ShowAddTodoBtn setShowTodo={onClickShowAddTodo} />
+      {showRegisterButtonPopup && (
+        <RegisterButtonPopup
+          onClose={() => setShowRegisterButtonPopup(false)}
+          onRegister={handleRegister}
+        />
+      )}
       <input
         className={styles.username}
         type="text"
@@ -39,10 +75,18 @@ function NavBarRight() {
       />
       <div className={styles.spacer} />
       <div className={styles.buttonContainer}>
-        <StandardBtn text={"Login"} style={{ fontWeight: 500 }} />
+        <StandardBtn
+          text={"Login"}
+          onClick={() => setShowLoginButtonPopup(true)}
+          style={{ fontWeight: 500 }}
+        />
       </div>
       <div className={styles.spacer} />
-      <StandardBtn text={"Register"} style={{ fontWeight: 500 }} />
+      <StandardBtn
+        text={"Register"}
+        onClick={() => setShowRegisterButtonPopup(true)}
+        style={{ fontWeight: 500 }}
+      />
       <div className={styles.spacer} />
       <StandardBtn text={"Game"} style={{ fontWeight: 500 }} />
       <div className={styles.marginright} />
