@@ -14,14 +14,15 @@
   font-weight: 600; /* Schriftstärke */
   box-shadow: var(--primary-color) -2px -2px 0px 2px, var(--secondary-color) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 0px 2px 7px; /* Schatten */
   transition: all 0.3s; /* Übergangseffekte */
-  height: 26px; /* Höhe des Buttons */
-  line-height: 26px; /* Zentrieren des Texts vertikal */
+  height: 20px; /* Höhe des Buttons */
+  line-height: 20px; /* Zentrieren des Texts vertikal */
 }
 
 /* Stile für den Button beim Überfahren */
 .myBtn:hover {
   box-shadow: rgb(246, 84, 222) -2px -2px 0px 2px, rgb(255, 198, 0) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 0px 2px 7px; /* Schatten beim Überfahren */
-  transform: scale(1.01); /* Leichte Skalierung */
+  transform: translateY(-5px);
+
 }
 
 /* Aktualisierte Schriftgröße */
