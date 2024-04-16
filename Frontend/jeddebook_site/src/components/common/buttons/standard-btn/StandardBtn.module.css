@@ -1,11 +1,34 @@
+/* Grundlegende Stile für den Button */
 .myBtn {
-  padding: 4px 8px;
-  border-radius: 8px;
-  color: rgb(0, 0, 0);
-  margin: 2px;
-  background-color: var(--primary-color);
-  cursor: pointer;
-  &:hover {
-    background-color: var(--secondary-color);
-  }
+  display: inline-block; /* Element als Blockelement anzeigen */
+  outline: 0; /* Keine Kontur */
+  border: 0; /* Kein Rand */
+  cursor: pointer; /* Zeiger-Cursor beim Überfahren */
+  text-decoration: none; /* Keine Unterstreichung */
+  position: relative; /* Relative Positionierung */
+  color: #000; /* Textfarbe */
+  background: #fff; /* Hintergrundfarbe */
+  border-radius: 40px; /* Abrundung der Ecken */
+  padding: 2px 20px; /* Höhe und Breite des Buttons */
+  font-size: 12px; /* Ursprüngliche Schriftgröße */
+  font-weight: 600; /* Schriftstärke */
+  box-shadow: var(--primary-color) -2px -2px 0px 2px, var(--secondary-color) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 0px 2px 7px; /* Schatten */
+  transition: all 0.3s; /* Übergangseffekte */
+  height: 26px; /* Höhe des Buttons */
+  line-height: 30px; /* Zentrieren des Texts vertikal */
+}
+
+/* Stile für den Button beim Überfahren */
+.myBtn:hover {
+  box-shadow: rgb(246, 84, 222) -2px -2px 0px 2px, rgb(255, 198, 0) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 0px 2px 7px; /* Schatten beim Überfahren */
+  transform: scale(1.01); /* Leichte Skalierung */
+}
+
+/* Aktualisierte Schriftgröße */
+.myBtn span {
+  font-size: 20px; /* Neue Schriftgröße */
+  display: inline-block; /* Element als Blockelement anzeigen */
+  vertical-align: middle; /* Vertikale Ausrichtung */
+  line-height: 1; /* Zeilenhöhe */
+  transition: all 0.2s; /* Übergangseffekte */
 }
