@@ -58,21 +58,7 @@ function NavBarRight() {
           onRegister={handleRegister}
         />
       )}
-      <input
-        className={styles.username}
-        type="text"
-        placeholder="   username"
-        value={username}
-        onChange={handleUsernameChange}
-      />
-      <div className={styles.spacer} />
-      <input
-        className={styles.password}
-        type="password"
-        placeholder="   password"
-        value={password}
-        onChange={handlePasswordChange}
-      />
+
       <div className={styles.spacer} />
       <div className={styles.buttonContainer}>
         <StandardBtn
