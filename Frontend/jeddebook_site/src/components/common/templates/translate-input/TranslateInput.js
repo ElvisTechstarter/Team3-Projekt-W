@@ -19,6 +19,8 @@ function TranslateInput({ onSearch, onClear }) {
         }
       );
       console.log("Antwort vom Server:", response.data);
+      //So greift man auf die data zu
+      console.log(response.data.de_entry);
     } catch (error) {
       console.error("Fehler bei der Anfrage:", error.message);
     }
