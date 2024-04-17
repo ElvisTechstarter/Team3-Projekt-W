@@ -1,14 +1,36 @@
+import React from "react";
+import { Link } from "react-router-dom";
 import logo from "./jeddebook_logo.png";
 import styles from "./Footer.module.css";
 
 function Footer() {
+  // Funktion, die zur Oberseite der Seite scrollt
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+    });
+  };
+
   return (
     <div className={styles.mainContainer}>
       <div className={styles.footerTop}>
         <div className={styles.links}>
           Quicklinks
-          <hr /> Homepage
-          <br /> Game
+          <hr />{" "}
+          <div className={styles.footerLink}>
+            <Link to="/" onClick={scrollToTop} className={styles.footerLink}>
+              Homepage
+            </Link>
+          </div>
+          <div className={styles.footerLink}>
+            <Link
+              to="/game"
+              onClick={scrollToTop}
+              className={styles.footerLink}
+            >
+              Game
+            </Link>
+          </div>
         </div>
         <div className={styles.spacer}></div>
         <div className={styles.logo}>
@@ -19,7 +41,16 @@ function Footer() {
       <hr />
       <div className={styles.footerBot}>
         <div className={styles.footerBotLeft}>
-          Impressum | Allgemeine Geschäftsbedingungen | Datenschutz
+          {/* Hier wird der Link zum Impressum hinzugefügt und beim Klicken wird zur Oberseite der Seite gescrollt */}
+          <Link
+            to="/impressum"
+            onClick={scrollToTop}
+            className={styles.impressumLink}
+          >
+            {" "}
+            Impressum
+          </Link>{" "}
+          | Allgemeine Geschäftsbedingungen | Datenschutz
         </div>
         <div className={styles.spacer}></div>
         <div className={styles.footerBotRight}>

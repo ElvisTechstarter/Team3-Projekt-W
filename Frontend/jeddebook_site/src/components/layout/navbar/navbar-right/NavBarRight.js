@@ -1,5 +1,5 @@
-// NavBarRight.js
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import StandardBtn from "../../../common/buttons/standard-btn";
 import styles from "./NavBarRight.module.css";
 import LoginButtonPopup from "./login-button-popup/LoginButtonPopup";
@@ -12,11 +12,19 @@ function NavBarRight() {
   //const [password] = useState("");
 
   const handleLogin = () => {
+
     setShowLoginButtonPopup(false);
   };
 
   const handleRegister = () => {
+
     setShowRegisterButtonPopup(false);
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+    });
   };
 
   return (
@@ -50,7 +58,10 @@ function NavBarRight() {
         style={{ fontWeight: 500 }}
       />
       <div className={styles.spacer} />
-      <StandardBtn text={"Game"} style={{ fontWeight: 500 }} />
+
+      <Link to="/game" className={styles.gameLink} onClick={scrollToTop}>
+        <StandardBtn text={"Game"} style={{ fontWeight: 500 }} />
+      </Link>
       <div className={styles.marginright} />
     </div>
   );
