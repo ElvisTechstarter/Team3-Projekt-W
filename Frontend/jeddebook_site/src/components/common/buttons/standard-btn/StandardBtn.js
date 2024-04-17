@@ -10,7 +10,9 @@ function StandardBtn({ onClick, text, style }) {
 
   const handleMouseUp = () => {
     setIsPressed(false);
-    onClick();
+    if (onClick) {
+      onClick();
+    }
   };
   return (
     <div
