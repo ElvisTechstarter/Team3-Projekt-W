@@ -8,26 +8,16 @@ import RegisterButtonPopup from "./register-button-popup/RegisterButtonPopup";
 function NavBarRight() {
   const [showLoginButtonPopup, setShowLoginButtonPopup] = useState(false);
   const [showRegisterButtonPopup, setShowRegisterButtonPopup] = useState(false);
-  const [username] = useState("");
-  const [password] = useState("");
+  //const [username] = useState("");
+  //const [password] = useState("");
 
   const handleLogin = () => {
-    console.log(
-      "Logging in with username:",
-      username,
-      "and password:",
-      password
-    );
+
     setShowLoginButtonPopup(false);
   };
 
   const handleRegister = () => {
-    console.log(
-      "Registering user with username:",
-      username,
-      "and password:",
-      password
-    );
+
     setShowRegisterButtonPopup(false);
   };
 
