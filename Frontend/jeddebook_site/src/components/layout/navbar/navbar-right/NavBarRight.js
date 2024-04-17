@@ -12,26 +12,10 @@ function NavBarRight() {
   const [password] = useState("");
 
   const handleLogin = () => {
-    // Hier kannst du die Login-Logik implementieren
-    console.log(
-      "Logging in with username:",
-      username,
-      "and password:",
-      password
-    );
-    // Nach dem Login kannst du das Popup schließen
     setShowLoginButtonPopup(false);
   };
 
   const handleRegister = () => {
-    // Hier kannst du die Register-Logik implementieren
-    console.log(
-      "Registering user with username:",
-      username,
-      "and password:",
-      password
-    );
-    // Nach der Registrierung kannst du das Popup schließen
     setShowRegisterButtonPopup(false);
   };
 
