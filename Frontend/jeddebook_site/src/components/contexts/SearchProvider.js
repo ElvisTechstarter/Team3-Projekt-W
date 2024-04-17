@@ -4,8 +4,7 @@ import axios from "axios";
 const SearchContext = createContext(null);
 
 export const SearchProvider = ({ children }) => {
-  const [response, setResponse] = useState(null); // Initialize with an empty object
-  //setResponse(null);
+  const [response, setResponse] = useState(null);
 
   const handleSearch = async (inputValue) => {
     try {
@@ -16,9 +15,9 @@ export const SearchProvider = ({ children }) => {
           params: { query: inputValue },
         }
       );
-      console.log("Antwort vom Server:", response.data);
+      //console.log("Antwort vom Server:", response.data);
       //So greift man auf die data zu
-      console.log(response.data.de_entry);
+      //console.log(response.data.de_entry);
       setResponse(response);
     } catch (error) {
       setResponse(undefined);

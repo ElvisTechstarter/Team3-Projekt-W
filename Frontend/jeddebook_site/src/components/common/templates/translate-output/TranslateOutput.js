@@ -8,19 +8,20 @@ function TranslateOutput() {
     <div className={styles.mainContainer}>
       <div>
         <div className={styles.titles}>
-          Die englische Übersetzung lautet:
           <div className={styles.languageContainer}>
-            <div className={styles.Input}>
-              {response ? response.data.en_entry : "No Entry"}
+            <div className={styles.de_entry}>
+              Deutscher Eintrag: <br /> <hr />
+              {response ? response.data.de_entry : "No Entry"}
             </div>
             <div className={styles.spacer}></div>
-            <div className={styles.Output}>
-              {response ? response.data.de_entry : "No Entry"}
+            <div className={styles.en_entry}>
+              Englischer Eintrag: <br /> <hr />
+              {response ? response.data.en_entry : "No Entry"}
             </div>
           </div>
         </div>
       </div>
-      <div className={styles.titles}>
+      <div className={styles.titles} style={{ display: "none" }}>
         Mögliche Anwendungsfälle:
         <div className={styles.Features}>
           <div className={styles.phrases}>
