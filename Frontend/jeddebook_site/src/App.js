@@ -1,3 +1,4 @@
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavigationBar from "./components/layout/navbar";
 import "./styles/App.css";
