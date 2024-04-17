@@ -1,15 +1,22 @@
+import React, { useContext } from "react";
 import styles from "./TranslateOutput.module.css";
+import SearchContext from "./../../../contexts/SearchProvider";
 
 function TranslateOutput() {
+  const { response } = useContext(SearchContext);
   return (
     <div className={styles.mainContainer}>
       <div>
         <div className={styles.titles}>
           Die englische Übersetzung lautet:
           <div className={styles.languageContainer}>
-            <div className={styles.Input}>Apfel</div>
+            <div className={styles.Input}>
+              {response ? response.data.en_entry : "No Entry"}
+            </div>
             <div className={styles.spacer}></div>
-            <div className={styles.Output}>Apple</div>
+            <div className={styles.Output}>
+              {response ? response.data.de_entry : "No Entry"}
+            </div>
           </div>
         </div>
       </div>

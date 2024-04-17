@@ -1,9 +1,10 @@
 import styles from "./TranslateInput.module.css";
-import React, { useState } from "react";
-import { handleSearch } from "../../../../utils/databaseRequests";
+import React, { useState, useContext } from "react";
+import SearchContext from "./../../../contexts/SearchProvider";
 
 function TranslateInput({ onSearch, onClear }) {
   const [inputValue, setInputValue] = useState("");
+  const { handleSearch } = useContext(SearchContext);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
