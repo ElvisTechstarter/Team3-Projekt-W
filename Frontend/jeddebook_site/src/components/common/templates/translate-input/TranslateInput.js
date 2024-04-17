@@ -3,8 +3,18 @@ import React, { useState, useContext } from "react";
 import SearchContext from "./../../../contexts/SearchProvider";
 
 function TranslateInput({ onSearch, onClear }) {
+  const [isPressed, setIsPressed] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const { handleSearch } = useContext(SearchContext);
+
+  const handleMouseDown = () => {
+    setIsPressed(true);
+  };
+
+  const handleMouseUp = () => {
+    setIsPressed(false);
+    handleSearch(inputValue);
+  };
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -31,8 +41,11 @@ function TranslateInput({ onSearch, onClear }) {
         onKeyDown={handleKeyDown}
       />
       <button
-        className={styles.searchButton}
-        onClick={() => handleSearch(inputValue)}
+        className={`${styles.searchButton} ${
+          isPressed ? styles.searchButtonPressed : ""
+        }`}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
       >
         🔍
       </button>
