@@ -9,7 +9,6 @@
   padding: 10px; /* Add some padding for better spacing */
   border: 1px solid #ccc; /* Add a border for visual separation */
   border-radius: 4px; /* Rounded corners */
-  background-image: url(""); /* Add your magnifying glass icon */
   background-repeat: no-repeat;
   background-size: 20px; /* Adjust the size of the icon */
   padding-right: 30px; /* Space for the icon */

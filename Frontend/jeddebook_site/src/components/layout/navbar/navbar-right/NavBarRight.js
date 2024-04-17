@@ -8,16 +8,8 @@ import RegisterButtonPopup from "./register-button-popup/RegisterButtonPopup";
 function NavBarRight() {
   const [showLoginButtonPopup, setShowLoginButtonPopup] = useState(false);
   const [showRegisterButtonPopup, setShowRegisterButtonPopup] = useState(false);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
-  };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
+  const [username] = useState("");
+  const [password] = useState("");
 
   const handleLogin = () => {
     // Hier kannst du die Login-Logik implementieren

@@ -1,5 +1,4 @@
 import styles from "./TranslateInput.module.css";
-import StandardBtn from "../../../common/buttons/standard-btn";
 import React, { useState } from "react";
 
 function TranslateInput() {
