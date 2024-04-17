@@ -7,7 +7,7 @@ import HomePage from "./pages/home-page";
 import ImpressumPage from "./pages/impressum-page";
 import Content from "./components/layout/content";
 import Footer from "./components/layout/footer";
-import {AuthProvider} from "./components/contexts/AuthContext"; // Import des AuthProviders
+import { AuthProvider } from "./components/contexts/AuthContext"; // Import des AuthProviders
 
 function App() {
   return (
@@ -28,4 +28,3 @@ function App() {
 }
 
 export default App;
-
