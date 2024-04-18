@@ -66,7 +66,10 @@ JeddebookRouter.post("/byEntry", async (req, res) => {
     console.log("Received userID:", userID);
 
     const userProfile = await user_db.findOne({ where: { id: userID } });
-    if (userProfile) userProfile.user_history.push(searchQuery);
+    if (userProfile) {
+      userProfile.user_history += " " + searchQuery;
+      await userProfile.save();
+    }
     console.log(
       "Adding ",
       searchQuery,

@@ -28,7 +28,7 @@ const user_db = dbSequelize.define(
     },
 
     user_history: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.STRING,
       allowNull: true,
     },
   }
