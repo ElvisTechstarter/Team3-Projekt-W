@@ -48,7 +48,7 @@ JeddebookRouter.post("/byEntry", async (req, res) => {
   console.log(req.body);
   const searchQuery = req.body.params.query;
   const userID = req.body.params.user;
-  console.log(searchQuery, userID);
+  //console.log(searchQuery, userID);
 
   try {
     if (!searchQuery) {
@@ -57,27 +57,21 @@ JeddebookRouter.post("/byEntry", async (req, res) => {
       return;
     }
 
+    //search the database for the query
     const DE_EN_entry = await jeddebook_de_en.findOne({
       where: {
         [Op.or]: [{ de_entry: searchQuery }, { en_entry: searchQuery }],
       },
     });
 
-    console.log("Received userID:", userID);
-
+    //add the query to the history, provided by the userID in body
     const userProfile = await user_db.findOne({ where: { id: userID } });
     if (userProfile) {
       userProfile.user_history += " " + searchQuery;
       await userProfile.save();
     }
-    console.log(
-      "Adding ",
-      searchQuery,
-      " to userID= ",
-      userID,
-      " successfull!"
-    );
 
+    //send the response back
     if (DE_EN_entry) {
       res.status(StatusCodes.OK).send(DE_EN_entry);
     } else {
