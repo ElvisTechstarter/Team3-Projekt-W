@@ -50,7 +50,20 @@ function Footer() {
             {" "}
             Impressum
           </Link>{" "}
-          | Allgemeine Geschäftsbedingungen | Datenschutz
+          |
+          <Link to="/agb" onClick={scrollToTop} className={styles.agbLink}>
+            {" "}
+            Allgemeine Geschäftsbedingungen
+          </Link>{" "}
+          |
+          <Link
+            to="/datenschutz"
+            onClick={scrollToTop}
+            className={styles.datenschutzLink}
+          >
+            {" "}
+            Datenschutz
+          </Link>{" "}
         </div>
         <div className={styles.spacer}></div>
         <div className={styles.footerBotRight}>

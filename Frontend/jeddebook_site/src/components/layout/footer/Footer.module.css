@@ -33,7 +33,9 @@
 }
 
 .footerLink,
-.impressumLink {
+.impressumLink,
+.agbLink,
+.datenschutzLink {
   color: white;
   text-decoration: none;
 }

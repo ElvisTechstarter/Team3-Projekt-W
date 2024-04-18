@@ -7,6 +7,8 @@ import HomePage from "./pages/home-page";
 import LoggedInPage from "./pages/loggedin-page";
 import GamePage from "./pages/game-page";
 import ImpressumPage from "./pages/impressum-page";
+import AGBPage from "./pages/agb-page";
+import DatenschutzPage from "./pages/datenschutz-page";
 import Content from "./components/layout/content";
 import Footer from "./components/layout/footer";
 import { AuthProvider } from "./components/contexts/AuthProvider";
@@ -21,9 +23,11 @@ function App() {
           <Content>
             <Routes>
               <Route path="/" element={<HomePage />} />
-								 <Route path="/loggedin" element={<LoggedInPage />} />
-            <Route path="/game" element={<GamePage />} />
+              <Route path="/loggedin" element={<LoggedInPage />} />
+              <Route path="/game" element={<GamePage />} />
               <Route path="/impressum" element={<ImpressumPage />} />
+              <Route path="/agb" element={<AGBPage />} />
+              <Route path="/datenschutz" element={<DatenschutzPage />} />
             </Routes>
           </Content>
           <Footer />
