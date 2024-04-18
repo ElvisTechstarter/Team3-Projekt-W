@@ -27,6 +27,7 @@ export const SearchProvider = ({ children }) => {
             params: { query: inputValue, user: userID },
           }
         );
+        console.log(response);
         setResponse(response);
       }
     } catch (error) {

@@ -26,12 +26,26 @@ const user_db = dbSequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-
-    user_history: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
   }
 );
 
-module.exports = user_db;
+// Define the UserHistory model
+const user_history = dbSequelize.define("userHistory", {
+  userId: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false,
+  },
+  user_history_entry: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+
+  // Add other tracked fields here (e.g., user_name, user_mail, etc.)
+  // ...
+});
+
+user_history.belongsTo(user_db, { foreignKey: "user_id" });
+
+module.exports = { user_db, user_history };

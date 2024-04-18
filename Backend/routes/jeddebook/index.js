@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");
 const jeddebook_de_en = require("../../database/models/jeddebook_de_en");
-const user_db = require("../../database/models/user_db");
+const { user_db, user_history } = require("../../database/models/user_db");
 const { Op } = require("sequelize"); // Import the Op object
 
 const JeddebookRouter = Router();
@@ -64,15 +64,15 @@ JeddebookRouter.post("/byEntry", async (req, res) => {
       },
     });
 
-    //add the query to the history, provided by the userID in body
-    const userProfile = await user_db.findOne({ where: { id: userID } });
-    if (userProfile) {
-      userProfile.user_history += " " + searchQuery;
-      await userProfile.save();
-    }
+    // Retrieve the user's history
+    const userHistoryEntries = await user_history.findOne({
+      where: { userId: userID },
+      attributes: ["user_history_entry"],
+    });
 
     //send the response back
     if (DE_EN_entry) {
+      DE_EN_entry.user_history = userHistoryEntries.user_history_entry;
       res.status(StatusCodes.OK).send(DE_EN_entry);
     } else {
       res.status(StatusCodes.NOT_FOUND).send("Eintrag nicht gefunden");
