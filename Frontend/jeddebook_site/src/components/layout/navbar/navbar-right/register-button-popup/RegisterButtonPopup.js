@@ -4,15 +4,23 @@ import styles from "./RegisterButtonPopup.module.css";
 import StandardTextInput from "../../../../common/text-inputs/standard-ti/StandardTextInput";
 
 function RegisterButtonPopup({ onClose }) {
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
-  const [repassword, setRepassword] = useState();
-  const [email, setEmail] = useState();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [repassword, setRepassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [registrationMessage, setRegistrationMessage] = useState("");
+  const [attemptedRegistration, setAttemptedRegistration] = useState(false);
 
   const handleRegister = async () => {
-    if (repassword !== password) {
-      alert("password don't match");
+    if (attemptedRegistration) {
+      // Wenn bereits versucht wurde, sich zu registrieren, breche ab
+      return;
+    }
 
+    setAttemptedRegistration(true);
+
+    if (repassword !== password) {
+      setRegistrationMessage("Passwords don't match");
       return;
     }
 
@@ -27,11 +35,16 @@ function RegisterButtonPopup({ onClose }) {
         "http://localhost:5050/v1/user/register",
         body
       );
-      console.log("Antwort vom Server:", response.data);
-      // Hier könntest du die Antwort des Servers weiter verarbeiten, z.B. Überprüfen, ob der Benutzername bereits existiert
-      // Nach erfolgreicher Validierung könntest du dann die Registrierungsanfrage an den Backend-Server senden
+
+      if (response.status === 200) {
+        setRegistrationMessage("Registration successful!");
+        // Hier könntest du weitere Aktionen ausführen, z.B. den Benutzer weiterleiten
+      } else {
+        setRegistrationMessage("Registration failed. Please try again.");
+      }
     } catch (error) {
-      console.error("Fehler bei der Anfrage:", error.message);
+      console.error("Error:", error.message);
+      setRegistrationMessage("An error occurred. Please try again later.");
     }
   };
 
@@ -70,6 +83,7 @@ function RegisterButtonPopup({ onClose }) {
         <button onClick={handleRegister}>Complete Registration</button>
         <div style={{ height: "5px" }} />
         <button onClick={onClose}>Cancel</button>
+        {attemptedRegistration && <p>{registrationMessage}</p>}
       </div>
     </div>
   );
