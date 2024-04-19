@@ -1,24 +1,35 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useContext } from "react";
 import axios from "axios";
+import AuthContext from "./AuthProvider";
 
 const SearchContext = createContext(null);
 
 export const SearchProvider = ({ children }) => {
   const [response, setResponse] = useState(null);
+  const { isLoggedIn, userID } = useContext(AuthContext);
 
   const handleSearch = async (inputValue) => {
+    if (inputValue === "") return;
     try {
-      // Sende die Daten an deinen Express-Server
-      const response = await axios.get(
-        "http://localhost:5050/v1/jeddebook/byEntry",
-        {
-          params: { query: inputValue },
-        }
-      );
-      //console.log("Antwort vom Server:", response.data);
-      //So greift man auf die data zu
-      //console.log(response.data.de_entry);
-      setResponse(response);
+      if (isLoggedIn === false) {
+        // Sende die Daten an deinen Express-Server
+        const response = await axios.get(
+          "http://localhost:5050/v1/jeddebook/byEntry",
+          {
+            params: { query: inputValue },
+          }
+        );
+        setResponse(response);
+      } else {
+        const response = await axios.post(
+          "http://localhost:5050/v1/jeddebook/byEntry",
+          {
+            params: { query: inputValue, user: userID },
+          }
+        );
+        //console.log(response);
+        setResponse(response);
+      }
     } catch (error) {
       setResponse(undefined);
       console.error("Fehler bei der Anfrage:", error.message);

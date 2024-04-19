@@ -1,6 +1,6 @@
 require("../../server");
 const jeddebook_de_en = require("../../database/models/jeddebook_de_en");
-const user_db = require("../../database/models/user_db");
+const { user_db, user_history } = require("../../database/models/user_db");
 const dbSequelize = require("../../database/setup/database");
 const TestData_en_de = require("./testdata/Testdata_en_de");
 const testdata_user_db = require("./testdata/testdata_user_db");
@@ -12,13 +12,15 @@ module.exports = async () => {
     // dbSequelize.dropSchema("de_ens").then(() => {
     //   dbSequelize.sync();
     // });
-    await dbSequelize.dropSchema("de_ens");
-    await dbSequelize.dropSchema("users");
+    //await dbSequelize.dropSchema("de_ens");
+    //await dbSequelize.dropSchema("users");
+    await dbSequelize.sync({ force: true });
     await dbSequelize.sync();
 
     // DB mit Daten füllen, um DB auf Test Szenarien vorzubereiten
     await jeddebook_de_en.bulkCreate(TestData_en_de);
-    await user_db.bulkCreate(testdata_user_db);
+    await user_db.bulkCreate(testdata_user_db.testdata_users);
+    await user_history.bulkCreate(testdata_user_db.testdata_user_history);
     console.log("Test DB init");
   } catch (e) {
     console.error("MY DB Issue", e);

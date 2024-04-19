@@ -1,18 +1,32 @@
 import React, { useContext } from "react";
 import styles from "./SearchHistory.module.css";
 import AuthContext from "./../../../contexts/AuthProvider";
+import SearchContext from "../../../contexts/SearchProvider";
 
 function SearchHistory() {
-  //let isLoggedIn = true;
-
-  // Feste Liste für den Suchverlauf
-  const fixedHistory = ["Suchanfrage 1", "Suchanfrage 2", "Suchanfrage 3"];
   const { isLoggedIn } = useContext(AuthContext);
+  const { response, handleSearch } = useContext(SearchContext);
 
-  // Iteriere über die feste Liste und zeige die Suchanfragen an
-  const searchHistoryItems = [];
-  for (let i = 0; i < fixedHistory.length; i++) {
-    searchHistoryItems.push(<li key={i}>{fixedHistory[i]}</li>);
+  // Create a new array to store formatted search history items
+  const formattedSearchHistory = [];
+
+  if (isLoggedIn && response) {
+    response.data.userHistoryEntries.forEach((element) => {
+      // Format the item (e.g., capitalize, add bullet points, etc.)
+      const formattedItem = `• ${element.user_history_entry
+        .charAt(0)
+        .toUpperCase()}${element.user_history_entry.slice(1)}`;
+      // Append the formatted item to the new array
+      formattedSearchHistory.push(formattedItem);
+    });
+  }
+
+  function handleItemClick(item) {
+    // Remove the bullet point and revert the capitalization
+    const unformattedItem = item.slice(2).toLowerCase();
+
+    // Do something with the unformatted item (e.g., display it, navigate to a page, etc.)
+    handleSearch(unformattedItem);
   }
 
   return (
@@ -20,7 +34,14 @@ function SearchHistory() {
       {isLoggedIn ? (
         <div>
           <h2>Suchverlauf:</h2>
-          <ul>{searchHistoryItems}</ul>
+          <hr />
+          <ul>
+            {formattedSearchHistory.map((item, index) => (
+              <li key={index} onClick={() => handleItemClick(item)}>
+                {item}
+              </li>
+            ))}
+          </ul>
         </div>
       ) : (
         <p>Du musst eingeloggt sein, um den Suchverlauf anzuzeigen.</p>
