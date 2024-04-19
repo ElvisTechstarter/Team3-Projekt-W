@@ -17,6 +17,10 @@
   box-sizing: border-box;
 }
 
+.searchInput:focus {
+  outline: 1px solid var(--secondary-color);
+}
+
 .searchButton,
 .clearButton {
   position: relative;

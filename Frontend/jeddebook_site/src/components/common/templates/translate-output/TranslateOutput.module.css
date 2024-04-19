@@ -53,19 +53,28 @@
   background: var(--background-color);
 }
 
-/* Add keyframes animation for fadeIn effect */
 @keyframes fadeIn {
-  from {
+  0% {
     opacity: 0;
-    transform: translateY(-10px);
   }
-  to {
+  100% {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
-/* Apply fadeIn animation to the relevant elements */
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 .fadeIn {
-  animation: fadeIn 2.5s ease-in-out;
+  animation: fadeIn 1s;
+}
+
+.fadeOut {
+  animation: fadeOut 1s;
 }

@@ -1,43 +1,47 @@
-// Updated TranslateOutput.js
+// TranslateOutput.js
 
 import React, { useContext, useEffect, useState } from "react";
-import styles from "./TranslateOutput.module.css";
+import styles from "./TranslateOutput.module.css"; // Import your CSS styles
 import SearchContext from "./../../../contexts/SearchProvider";
 
 function TranslateOutput() {
   const { response } = useContext(SearchContext);
-  const [showAnimation, setShowAnimation] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Whenever the response changes, set showAnimation to true
-    setShowAnimation(true);
+    // Trigger the fade-out animation
+    setIsVisible(false);
 
-    // Cleanup function: set showAnimation to false when component unmounts
-    return () => {
-      setShowAnimation(false);
-    };
+    // After a short delay (adjustable), trigger the fade-in animation with the new response
+    setTimeout(() => {
+      setIsVisible(true);
+    }, 100); // Adjust the delay as needed (e.g., 300ms)
   }, [response]); // Trigger effect when response changes
 
   return (
     <div className={styles.mainContainer}>
       <div className={styles.titles}>
         <div className={styles.languageContainer}>
-          <div
-            className={`${styles.de_entry} ${
-              showAnimation ? styles.fadeIn : ""
-            }`}
-          >
+          <div className={styles.de_entry}>
             Deutscher Eintrag: <br /> <hr />
-            {response && (response.data.DE_EN_entry?.de_entry || "No Entry")}
+            <div
+              className={`${styles.response_de} ${
+                isVisible ? styles.fadeIn : ""
+              }`}
+            >
+              {response && (response.data.DE_EN_entry?.de_entry || "No Entry")}
+            </div>
           </div>
           <div className={styles.spacer}></div>
-          <div
-            className={`${styles.en_entry} ${
-              showAnimation ? styles.fadeIn : ""
-            }`}
-          >
+          <div className={styles.en_entry}>
             Englischer Eintrag: <br /> <hr />
-            {response && (response.data.DE_EN_entry?.en_entry || "No Entry")}
+            <div
+              className={`${styles.response_en} ${
+                isVisible ? styles.fadeIn : ""
+              }`}
+            >
+              {response && (response.data.DE_EN_entry?.en_entry || "No Entry")}
+            </div>
           </div>
         </div>
       </div>
@@ -46,5 +50,3 @@ function TranslateOutput() {
 }
 
 export default TranslateOutput;
-
-// Updated TranslateOutput.module.css remains the same
