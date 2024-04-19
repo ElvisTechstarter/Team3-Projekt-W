@@ -58,22 +58,30 @@ JeddebookRouter.post("/byEntry", async (req, res) => {
     }
 
     //search the database for the query
-    const DE_EN_entry = await jeddebook_de_en.findOne({
-      where: {
-        [Op.or]: [{ de_entry: searchQuery }, { en_entry: searchQuery }],
-      },
-    });
+    const [DE_EN_entry, userHistoryEntries] = await Promise.all([
+      jeddebook_de_en.findOne({
+        where: {
+          [Op.or]: [{ de_entry: searchQuery }, { en_entry: searchQuery }],
+        },
+      }),
+      user_history.findAll({
+        where: { userId: userID },
+        attributes: ["user_history_entry"],
+      }),
+    ]);
 
-    // Retrieve the user's history
-    const userHistoryEntries = await user_history.findOne({
-      where: { userId: userID },
-      attributes: ["user_history_entry"],
-    });
+    const combinedResult = {
+      DE_EN_entry: DE_EN_entry,
+      userHistoryEntries: userHistoryEntries,
+    };
+
+    console.log(userHistoryEntries);
+    console.log(combinedResult);
 
     //send the response back
-    if (DE_EN_entry) {
-      DE_EN_entry.user_history = userHistoryEntries.user_history_entry;
-      res.status(StatusCodes.OK).send(DE_EN_entry);
+    if (combinedResult) {
+      //DE_EN_entry.user_history = userHistoryEntries.dataValues;
+      res.status(StatusCodes.OK).send(combinedResult);
     } else {
       res.status(StatusCodes.NOT_FOUND).send("Eintrag nicht gefunden");
     }

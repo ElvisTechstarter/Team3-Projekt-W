@@ -33,9 +33,11 @@ const user_db = dbSequelize.define(
 const user_history = dbSequelize.define("userHistory", {
   userId: {
     type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
     allowNull: false,
+    references: {
+      model: user_db, // Referencing the users table
+      key: "id", // Referencing the id column
+    },
   },
   user_history_entry: {
     type: DataTypes.STRING,
@@ -46,6 +48,6 @@ const user_history = dbSequelize.define("userHistory", {
   // ...
 });
 
-user_history.belongsTo(user_db, { foreignKey: "user_id" });
+//user_history.belongsTo(user_db, { foreignKey: "user_id" });
 
 module.exports = { user_db, user_history };

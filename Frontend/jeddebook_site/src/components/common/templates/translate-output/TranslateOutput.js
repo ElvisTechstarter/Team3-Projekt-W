@@ -11,12 +11,12 @@ function TranslateOutput() {
           <div className={styles.languageContainer}>
             <div className={styles.de_entry}>
               Deutscher Eintrag: <br /> <hr />
-              {response ? response.data.de_entry : "No Entry"}
+              {response && (response.data.DE_EN_entry?.de_entry || "No Entry")}
             </div>
             <div className={styles.spacer}></div>
             <div className={styles.en_entry}>
               Englischer Eintrag: <br /> <hr />
-              {response ? response.data.en_entry : "No Entry"}
+              {response && (response.data.DE_EN_entry?.en_entry || "No Entry")}
             </div>
           </div>
         </div>

@@ -13,12 +13,24 @@ const testdata_users = [
 
 const testdata_user_history = [
   {
-    userId: 1, // Max's user ID
-    user_history_entry: "", // No history for Max
+    userId: 1,
+    user_history_entry: "",
   },
   {
-    userId: 2, // Maria's user ID
-    user_history_entry: "Apfel-apple, peach-Pfirsich", // Maria's history
+    userId: 2,
+    user_history_entry: "peach",
+  },
+  {
+    userId: 2,
+    user_history_entry: "Apfel",
+  },
+  {
+    userId: 2,
+    user_history_entry: "Birne",
+  },
+  {
+    userId: 2,
+    user_history_entry: "rubbish",
   },
 ];
 
