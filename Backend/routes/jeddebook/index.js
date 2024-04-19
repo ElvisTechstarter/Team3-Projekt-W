@@ -14,9 +14,9 @@ JeddebookRouter.get("/all", async (req, res) => {
 });
 
 JeddebookRouter.get("/byEntry", async (req, res) => {
-  console.log(req.params, req.query);
+  //console.log(req.params, req.query);
   const searchQuery = req.query.query; // Extract the actual search term
-  console.log(searchQuery);
+  //console.log(searchQuery);
   try {
     if (!searchQuery) {
       // Handle the case when the query is empty
@@ -45,7 +45,7 @@ JeddebookRouter.get("/byEntry", async (req, res) => {
 // POST REQUESTS
 JeddebookRouter.post("/byEntry", async (req, res) => {
   //Extract data from req
-  console.log(req.body);
+  //console.log(req.body);
   const searchQuery = req.body.params.query;
   const userID = req.body.params.user;
   //console.log(searchQuery, userID);
@@ -75,8 +75,8 @@ JeddebookRouter.post("/byEntry", async (req, res) => {
       userHistoryEntries: userHistoryEntries,
     };
 
-    console.log(userHistoryEntries);
-    console.log(combinedResult);
+    //console.log(userHistoryEntries);
+    //console.log(combinedResult);
 
     //send the response back
     if (combinedResult) {

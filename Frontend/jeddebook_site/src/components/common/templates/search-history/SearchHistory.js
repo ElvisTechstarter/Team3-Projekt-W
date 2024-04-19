@@ -34,7 +34,7 @@ function SearchHistory() {
       {isLoggedIn ? (
         <div>
           <h2>Suchverlauf:</h2>
-
+          <hr />
           <ul>
             {formattedSearchHistory.map((item, index) => (
               <li key={index} onClick={() => handleItemClick(item)}>
