@@ -32,6 +32,43 @@ function Footer() {
             </Link>
           </div>
         </div>
+        <div className={styles.socialMediaLinks}>
+          <p>Folge uns auf...</p>
+          <hr className={styles.separator} />
+          <a
+            href="https://www.facebook.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="link_zum_facebook_bild.jpg"
+              alt="Facebook"
+              className={styles.socialMediaIcon}
+            />
+          </a>
+          <a
+            href="https://www.instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="link_zum_instagram_bild.jpg"
+              alt="Instagram"
+              className={styles.socialMediaIcon}
+            />
+          </a>
+          <a
+            href="https://www.linkedin.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="link_zum_facebook_bild.jpg"
+              alt="LinkedIn"
+              className={styles.socialMediaIcon}
+            />
+          </a>
+        </div>
         <div className={styles.spacer}></div>
         <div className={styles.logo}>
           <img className={styles.logo} src={logo} alt="Logo" />

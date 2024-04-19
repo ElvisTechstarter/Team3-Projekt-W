@@ -61,4 +61,35 @@
 
 .links {
   margin-left: -9%;
+  color: white;
+}
+
+.socialMediaLinks {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20%;
+  align-items: flex-start; /* Änderung: Elemente linksbündig ausrichten */
+  margin-top: 0;
+}
+
+.socialMediaLinks a {
+  color: white; /* Schriftfarbe der Social Media Links */
+  text-decoration: none;
+}
+
+.links a {
+  color: white; /* Schriftfarbe der Links */
+  text-decoration: none;
+}
+
+.separator {
+  border: none;
+  border-top: 1px solid #fff; /* Farbe und Stil der Trennlinie */
+  width: 100%; /* Breite der Trennlinie */
+  margin: 0; /* Abstand über und unter der Trennlinie */
+}
+
+.socialMediaLinks hr {
+  margin-top: -9px; /* Änderung: Margin oben entfernen */
+  margin-bottom: 6px; /* Änderung: Margin unten hinzufügen */
 }
