@@ -1,8 +1,6 @@
 const { Router } = require("express");
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");
-const UserDB = require("../../database/models/user_db");
-const user_db = require("../../database/models/user_db");
-
+const { user_db } = require("../../database/models/user_db");
 const UserRouter = Router();
 
 //  ***GET REQUESTS***
@@ -25,19 +23,33 @@ UserRouter.get("/profile", async (req, res) => {
   res.status(StatusCodes.OK).json({ profile: userProfile });
 });
 
-// POST REQUESTS
-UserRouter.post("/register", async (req, res) => {
-  const { newUserName, newUserMail, newUserPW } = req.body;
+// POST-Anfrage für Benutzeranmeldung
+UserRouter.post("/login", async (req, res) => {
+  const { username, password } = req.body;
 
-  const newUser = {
-    user_name: newUserName,
-    user_mail: newUserMail,
-    user_pw: newUserPW,
-  };
+  try {
+    // Überprüfen, ob der Benutzer in der Datenbank vorhanden ist
+    const user = await user_db.findOne({
+      where: { user_name: username, user_pw: password },
+    });
 
-  const users = await user_db.create(newUser);
+    if (!user) {
+      // Wenn der Benutzer nicht gefunden wurde, sende eine Fehlermeldung zurück
+      return res
+        .status(StatusCodes.UNAUTHORIZED)
+        .json({ message: "Invalid username or password" });
+    }
 
-  res.status(StatusCodes.OK).json({ users: users });
+    // Wenn der Benutzer gefunden wurde, sende eine Erfolgsmeldung zurück
+    res
+      .status(StatusCodes.OK)
+      .json({ message: "Login successful", user: user });
+  } catch (error) {
+    console.error("Error:", error.message);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "An error occurred" });
+  }
 });
 
 // DELETE REQUEST
