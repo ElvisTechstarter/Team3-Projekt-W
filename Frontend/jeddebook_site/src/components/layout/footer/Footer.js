@@ -35,6 +35,7 @@ function Footer() {
             </Link>
           </div>
         </div>
+        <div className={styles.spacer}></div>
         <div className={styles.socialMediaLinks}>
           <p>Folge uns auf...</p>
           <hr className={styles.separator} />

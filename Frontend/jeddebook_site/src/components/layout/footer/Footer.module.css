@@ -67,7 +67,7 @@
 .socialMediaLinks {
   display: flex;
   flex-direction: column;
-  margin-right: 26%;
+  margin-right: 42%;
   align-items: flex-start; /* Änderung: Elemente linksbündig ausrichten */
   margin-top: 0;
 }
