@@ -30,8 +30,13 @@ JeddebookRouter.get("/byEntry", async (req, res) => {
       },
     });
 
+    //change format so its same as POST-request
+    const combinedResult = {
+      DE_EN_entry: DE_EN_entry,
+    };
+
     if (DE_EN_entry) {
-      res.status(StatusCodes.OK).send(DE_EN_entry);
+      res.status(StatusCodes.OK).send(combinedResult);
     } else {
       res.status(StatusCodes.NOT_FOUND).send("Eintrag nicht gefunden");
     }

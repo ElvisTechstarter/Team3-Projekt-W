@@ -19,6 +19,7 @@ export const SearchProvider = ({ children }) => {
             params: { query: inputValue },
           }
         );
+        console.log(response);
         setResponse(response);
       } else {
         const response = await axios.post(
@@ -27,7 +28,7 @@ export const SearchProvider = ({ children }) => {
             params: { query: inputValue, user: userID },
           }
         );
-        //console.log(response);
+        console.log(response);
         setResponse(response);
       }
     } catch (error) {
