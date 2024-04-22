@@ -16,21 +16,13 @@ function Footer() {
       <div className={styles.footerTop}>
         <div className={styles.links}>
           Quicklinks
-          <hr />{" "}
-          <div className={styles.footerLink}>
-            <Link to="/" onClick={scrollToTop} className={styles.footerLink}>
-              Homepage
-            </Link>
-          </div>
-          <div className={styles.footerLink}>
-            <Link
-              to="/game"
-              onClick={scrollToTop}
-              className={styles.footerLink}
-            >
-              Game
-            </Link>
-          </div>
+          <div className={styles.underline} />
+          <Link to="/" onClick={scrollToTop} className={styles.footerLink}>
+            Homepage
+          </Link>
+          <Link to="/game" onClick={scrollToTop} className={styles.footerLink}>
+            Game
+          </Link>
         </div>
         <div className={styles.spacer}></div>
         <div className={styles.logo}>

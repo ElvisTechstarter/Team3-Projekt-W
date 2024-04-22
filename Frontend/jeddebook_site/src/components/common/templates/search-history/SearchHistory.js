@@ -4,15 +4,15 @@ import AuthContext from "./../../../contexts/AuthProvider";
 import SearchContext from "../../../contexts/SearchProvider";
 
 function SearchHistory() {
-  const { isLoggedIn } = useContext(AuthContext);
-  const { response, handleSearch } = useContext(SearchContext);
+  const { isLoggedIn, userHistory } = useContext(AuthContext);
+  const { handleSearch } = useContext(SearchContext);
 
   // Create a new array to store formatted search history items
   const formattedSearchHistory = [];
 
-  if (isLoggedIn && response && response.data.userHistoryEntries) {
-    // Check if response.data.userHistoryEntries exists before iterating over it
-    response.data.userHistoryEntries.forEach((element) => {
+  if (isLoggedIn && userHistory) {
+    // Check if userHistory exists before iterating over it
+    userHistory.forEach((element) => {
       // Format the item (e.g., capitalize, add bullet points, etc.)
       const formattedItem = `• ${element.user_history_entry
         .charAt(0)
