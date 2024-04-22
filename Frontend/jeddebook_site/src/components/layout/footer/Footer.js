@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaSquareXTwitter } from "react-icons/fa6";
+
 import logo from "./jeddebook_logo.png";
 import styles from "./Footer.module.css";
 
@@ -33,6 +36,41 @@ function Footer() {
           </div>
         </div>
         <div className={styles.spacer}></div>
+        <div className={styles.socialMediaLinks}>
+          <p>Folge uns auf...</p>
+          <hr className={styles.separator} />
+          <div className={styles.socialMediaIcons}>
+            <Link
+              to="https://www.facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaFacebook className={styles.socialMediaIcon} />
+            </Link>
+            <Link
+              to="https://www.instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram className={styles.socialMediaIcon} />
+            </Link>
+            <Link
+              to="https://www.twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaSquareXTwitter className={styles.socialMediaIcon} />
+            </Link>
+            <Link
+              to="https://www.linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaLinkedin className={styles.socialMediaIcon} />
+            </Link>
+          </div>
+        </div>
+        <div className={styles.spacer}></div>
         <div className={styles.logo}>
           <img className={styles.logo} src={logo} alt="Logo" />
         </div>
@@ -50,7 +88,20 @@ function Footer() {
             {" "}
             Impressum
           </Link>{" "}
-          | Allgemeine Geschäftsbedingungen | Datenschutz
+          |
+          <Link to="/agb" onClick={scrollToTop} className={styles.agbLink}>
+            {" "}
+            Allgemeine Geschäftsbedingungen
+          </Link>{" "}
+          |
+          <Link
+            to="/datenschutz"
+            onClick={scrollToTop}
+            className={styles.datenschutzLink}
+          >
+            {" "}
+            Datenschutz
+          </Link>{" "}
         </div>
         <div className={styles.spacer}></div>
         <div className={styles.footerBotRight}>

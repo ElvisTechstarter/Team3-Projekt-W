@@ -32,7 +32,9 @@
 }
 
 .footerLink,
-.impressumLink {
+.impressumLink,
+.agbLink,
+.datenschutzLink {
   color: white;
   text-decoration: none;
 }
@@ -58,4 +60,49 @@
 
 .links {
   margin-left: -9%;
+  color: white;
+}
+
+.socialMediaLinks {
+  display: flex;
+  flex-direction: column;
+  margin-right: 42%;
+  align-items: flex-start; /* Änderung: Elemente linksbündig ausrichten */
+  margin-top: 0;
+}
+
+.socialMediaLinks a {
+  color: white; /* Schriftfarbe der Social Media Links */
+  text-decoration: none;
+}
+
+.links a {
+  color: white; /* Schriftfarbe der Links */
+  text-decoration: none;
+}
+
+.separator {
+  border: none;
+  border-top: 1px solid #fff; /* Farbe und Stil der Trennlinie */
+  width: 93%; /* Breite der Trennlinie */
+  margin: 0; /* Abstand über und unter der Trennlinie */
+}
+
+.socialMediaLinks hr {
+  margin-top: -8px; /* Änderung: Margin oben entfernen */
+  margin-bottom: 12px; /* Änderung: Margin unten hinzufügen */
+}
+
+.socialMediaIcons {
+  font-size: 30px;
+  margin-bottom: 18px;
+}
+
+.socialMediaIcon {
+  margin-right: 10px;
+  transition: transform 0.3s ease;
+}
+
+.socialMediaIcon:hover {
+  transform: translateY(5px); /* Bewegung nach unten bei Hover */
 }

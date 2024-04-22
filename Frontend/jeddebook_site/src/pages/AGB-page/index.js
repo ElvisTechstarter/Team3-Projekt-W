@@ -1,3 +1,3 @@
-import AGBpage from "./AGBpage.js";
+import AGBPage from "./AGBPage.js";
 
-export default AGBpage;
+export default AGBPage;
