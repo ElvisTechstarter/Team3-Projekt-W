@@ -6,6 +6,27 @@ const { Op } = require("sequelize"); // Import the Op object
 
 const JeddebookRouter = Router();
 
+//function to add entry
+async function addHistoryEntry(userID, searchQuery) {
+  try {
+    const user = await user_db.findOne({
+      where: { id: userID },
+    });
+
+    if (user) {
+      await user_history.create({
+        userId: user.id,
+        user_history_entry: searchQuery,
+      });
+      //console.log("User history entry created successfully!");
+    } else {
+      //console.log("User not found. Unable to create history entry.");
+    }
+  } catch (error) {
+    console.error(`Error: ${error.message}`);
+  }
+}
+
 // GET REQUESTS
 
 JeddebookRouter.get("/all", async (req, res) => {
@@ -14,9 +35,8 @@ JeddebookRouter.get("/all", async (req, res) => {
 });
 
 JeddebookRouter.get("/byEntry", async (req, res) => {
-  //console.log(req.params, req.query);
-  const searchQuery = req.query.query; // Extract the actual search term
-  //console.log(searchQuery);
+  //Extract the searchterm
+  const searchQuery = req.query.query;
   try {
     if (!searchQuery) {
       // Handle the case when the query is empty
@@ -49,11 +69,9 @@ JeddebookRouter.get("/byEntry", async (req, res) => {
 
 // POST REQUESTS
 JeddebookRouter.post("/byEntry", async (req, res) => {
-  //Extract data from req
-  //console.log(req.body);
+  //Extract the searchterm and userID
   const searchQuery = req.body.params.query;
   const userID = req.body.params.user;
-  //console.log(searchQuery, userID);
 
   try {
     if (!searchQuery) {
@@ -62,17 +80,28 @@ JeddebookRouter.post("/byEntry", async (req, res) => {
       return;
     }
 
-    //search the database for the query
-    const [DE_EN_entry, userHistoryEntries] = await Promise.all([
-      jeddebook_de_en.findOne({
-        where: {
-          [Op.or]: [{ de_entry: searchQuery }, { en_entry: searchQuery }],
-        },
-      }),
-      user_history.findAll({
-        where: { userId: userID },
-        attributes: ["user_history_entry"],
-      }),
+    // Search the database for the query
+    // Add the history entry first
+    await addHistoryEntry(userID, searchQuery);
+
+    // Retrieve user history entries in descending order of creation date
+    const userHistoryEntriesPromise = user_history.findAll({
+      where: { userId: userID },
+      attributes: ["user_history_entry"],
+      limit: 5,
+      order: [["createdAt", "DESC"]], // Order by createdAt in descending order
+    });
+
+    // Search the database for the query
+    const DE_EN_entryPromise = jeddebook_de_en.findOne({
+      where: {
+        [Op.or]: [{ de_entry: searchQuery }, { en_entry: searchQuery }],
+      },
+    });
+
+    const [userHistoryEntries, DE_EN_entry] = await Promise.all([
+      userHistoryEntriesPromise,
+      DE_EN_entryPromise,
     ]);
 
     const combinedResult = {
@@ -80,12 +109,9 @@ JeddebookRouter.post("/byEntry", async (req, res) => {
       userHistoryEntries: userHistoryEntries,
     };
 
-    //console.log(userHistoryEntries);
-    //console.log(combinedResult);
-
-    //send the response back
+    // Send the response back
     if (combinedResult) {
-      //DE_EN_entry.user_history = userHistoryEntries.dataValues;
+      // DE_EN_entry.user_history = userHistoryEntries.dataValues;
       res.status(StatusCodes.OK).send(combinedResult);
     } else {
       res.status(StatusCodes.NOT_FOUND).send("Eintrag nicht gefunden");

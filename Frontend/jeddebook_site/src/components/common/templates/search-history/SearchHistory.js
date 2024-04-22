@@ -10,7 +10,8 @@ function SearchHistory() {
   // Create a new array to store formatted search history items
   const formattedSearchHistory = [];
 
-  if (isLoggedIn && response) {
+  if (isLoggedIn && response && response.data.userHistoryEntries) {
+    // Check if response.data.userHistoryEntries exists before iterating over it
     response.data.userHistoryEntries.forEach((element) => {
       // Format the item (e.g., capitalize, add bullet points, etc.)
       const formattedItem = `• ${element.user_history_entry
