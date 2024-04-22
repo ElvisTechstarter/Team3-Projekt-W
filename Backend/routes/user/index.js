@@ -22,7 +22,20 @@ UserRouter.get("/profile", async (req, res) => {
 
   res.status(StatusCodes.OK).json({ profile: userProfile });
 });
+// POST REQUESTS
+UserRouter.post("/register", async (req, res) => {
+  const { newUserName, newUserMail, newUserPW } = req.body;
 
+  const newUser = {
+    user_name: newUserName,
+    user_mail: newUserMail,
+    user_pw: newUserPW,
+  };
+
+  const users = await user_db.create(newUser);
+
+  res.status(StatusCodes.OK).json({ users: users });
+});
 // POST-Anfrage für Benutzeranmeldung
 UserRouter.post("/login", async (req, res) => {
   const { username, password } = req.body;
