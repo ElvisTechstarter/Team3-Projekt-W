@@ -11,22 +11,26 @@ import Content from "./components/layout/content";
 import Footer from "./components/layout/footer";
 import { AuthProvider } from "./components/contexts/AuthProvider";
 import { SearchProvider } from "./components/contexts/SearchProvider";
+import MyComponent from './components/MyComponent';
 
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
         <SearchProvider>
-          <NavigationBar />
-          <Content>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/loggedin" element={<LoggedInPage />} />
-              <Route path="/game" element={<GamePage />} />
-              <Route path="/impressum" element={<ImpressumPage />} />
-            </Routes>
-          </Content>
-          <Footer />
+          <div>
+            <NavigationBar />
+            <Content>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/loggedin" element={<LoggedInPage />} />
+                <Route path="/game" element={<GamePage />} />
+                <Route path="/impressum" element={<ImpressumPage />} />
+                <Route path="/mycomponent" element={<MyComponent />} /> {/* Beispielroute für MyComponent */}
+              </Routes>
+            </Content>
+            <Footer />
+          </div>
         </SearchProvider>
       </AuthProvider>
     </BrowserRouter>
