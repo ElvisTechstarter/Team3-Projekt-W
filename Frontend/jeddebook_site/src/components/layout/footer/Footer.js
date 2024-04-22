@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaSquareXTwitter } from "react-icons/fa6";
+
 import logo from "./jeddebook_logo.png";
 import styles from "./Footer.module.css";
 
@@ -35,39 +38,36 @@ function Footer() {
         <div className={styles.socialMediaLinks}>
           <p>Folge uns auf...</p>
           <hr className={styles.separator} />
-          <a
-            href="https://www.facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              src="link_zum_facebook_bild.jpg"
-              alt="Facebook"
-              className={styles.socialMediaIcon}
-            />
-          </a>
-          <a
-            href="https://www.instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              src="link_zum_instagram_bild.jpg"
-              alt="Instagram"
-              className={styles.socialMediaIcon}
-            />
-          </a>
-          <a
-            href="https://www.linkedin.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              src="link_zum_facebook_bild.jpg"
-              alt="LinkedIn"
-              className={styles.socialMediaIcon}
-            />
-          </a>
+          <div className={styles.socialMediaIcons}>
+            <Link
+              to="https://www.facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaFacebook className={styles.socialMediaIcon} />
+            </Link>
+            <Link
+              to="https://www.instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram className={styles.socialMediaIcon} />
+            </Link>
+            <Link
+              to="https://www.twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaSquareXTwitter className={styles.socialMediaIcon} />
+            </Link>
+            <Link
+              to="https://www.linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaLinkedin className={styles.socialMediaIcon} />
+            </Link>
+          </div>
         </div>
         <div className={styles.spacer}></div>
         <div className={styles.logo}>

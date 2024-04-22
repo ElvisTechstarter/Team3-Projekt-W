@@ -67,7 +67,7 @@
 .socialMediaLinks {
   display: flex;
   flex-direction: column;
-  margin-right: 20%;
+  margin-right: 26%;
   align-items: flex-start; /* Änderung: Elemente linksbündig ausrichten */
   margin-top: 0;
 }
@@ -85,11 +85,20 @@
 .separator {
   border: none;
   border-top: 1px solid #fff; /* Farbe und Stil der Trennlinie */
-  width: 100%; /* Breite der Trennlinie */
+  width: 93%; /* Breite der Trennlinie */
   margin: 0; /* Abstand über und unter der Trennlinie */
 }
 
 .socialMediaLinks hr {
-  margin-top: -9px; /* Änderung: Margin oben entfernen */
-  margin-bottom: 6px; /* Änderung: Margin unten hinzufügen */
+  margin-top: -8px; /* Änderung: Margin oben entfernen */
+  margin-bottom: 12px; /* Änderung: Margin unten hinzufügen */
+}
+
+.socialMediaIcons {
+  font-size: 30px;
+  margin-bottom: 18px;
+}
+
+.socialMediaIcon {
+  margin-right: 10px;
 }
