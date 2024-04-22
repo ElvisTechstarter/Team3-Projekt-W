@@ -101,4 +101,9 @@
 
 .socialMediaIcon {
   margin-right: 10px;
+  transition: transform 0.3s ease;
+}
+
+.socialMediaIcon:hover {
+  transform: translateY(5px); /* Bewegung nach unten bei Hover */
 }
