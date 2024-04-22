@@ -1,5 +1,3 @@
-
-import DatenschutzPage from "./DatenschutzPage.js";
+import DatenschutzPage from "./DatenschutzPage";
 
 export default DatenschutzPage;
-

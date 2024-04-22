@@ -1,7 +1,6 @@
-import React from "react";
-import styles from "./AGBPage.module.css";
+import styles from "./Agbpage.module.css";
 
-function AGBPage() {
+function Agbpage() {
   return (
     <div className={styles.container}>
       <h1 className={styles.heading}>Allgemeine Geschäftsbedingungen</h1>
@@ -216,4 +215,4 @@ function AGBPage() {
   );
 }
 
-export default AGBPage;
+export default Agbpage;
