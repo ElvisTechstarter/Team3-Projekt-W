@@ -1,33 +1,67 @@
+// LoginButtonPopup.js
+
+import React, { useState } from "react";
+import axios from "axios";
 import styles from "./LoginButtonPopup.module.css";
-import React, { useContext } from "react";
-import AuthContext from "../../../../contexts/AuthProvider";
+import StandardTextInput from "../../../../common/text-inputs/standard-ti/StandardTextInput";
 
-function LoginButtonPopup({ onClose, onLogin }) {
-  const { login, logout } = useContext(AuthContext);
+function LoginButtonPopup({ onClose, onLoginSuccess, onRegister }) {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loginMessage, setLoginMessage] = useState("");
 
-  const handleLogin = () => {
-    // Hier könntest du Validierung und weitere Logik für den Login implementieren
-    login();
-    onLogin();
+  const handleLogin = async () => {
+    try {
+      const body = {
+        username,
+        password,
+      };
+
+      const response = await axios.post(
+        "http://localhost:5050/v1/user/login",
+        body
+      );
+
+      if (response.status === 200) {
+        setLoginMessage("Login successful!");
+        onLoginSuccess(); // Rufe die Funktion handleLoginSuccess auf, wenn das Login erfolgreich ist
+      } else {
+        setLoginMessage(
+          "Login failed. Please check your credentials and try again."
+        );
+      }
+    } catch (error) {
+      console.error("Error:", error.message);
+      setLoginMessage("An error occurred. Please try again later.");
+    }
   };
 
-  const handleLogout = () => {
-    // Hier könntest du Validierung und weitere Logik für den Logout implementieren
-    logout();
-    onClose();
-  };
   function onClickChild(event) {
     event.stopPropagation();
   }
+
   return (
     <div className={styles.container} onClick={onClose}>
       <div className={styles.popup} onClick={onClickChild}>
         <h2>Login</h2>
-        <input type="text" placeholder="Username" />
-        <input type="password" placeholder="Password" />
+        <StandardTextInput
+          type="text"
+          placeholder="Username"
+          name="username"
+          setNewValue={setUsername}
+          value={username}
+        />
+        <StandardTextInput
+          type="password"
+          placeholder="Password"
+          name="password"
+          setNewValue={setPassword}
+          value={password}
+        />
         <button onClick={handleLogin}>Login</button>
         <div style={{ height: "5px" }} />
-        <button onClick={handleLogout}>Cancel</button>
+        <button onClick={onRegister}>Register</button>
+        {loginMessage && <p>{loginMessage}</p>}
       </div>
     </div>
   );

@@ -23,7 +23,9 @@ export const AuthProvider = ({ children }) => {
 
   // Bereitstellen des AuthContexts für Kinderkomponenten mit dem aktuellen Login-Status und den Login-/Logout-Funktionen
   return (
-    <AuthContext.Provider value={{ isLoggedIn, userID, login, logout }}>
+    <AuthContext.Provider
+      value={{ isLoggedIn, userID, login, logout, setIsLoggedIn }}
+    >
       {children}
     </AuthContext.Provider>
   );
