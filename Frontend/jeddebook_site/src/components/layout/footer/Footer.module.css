@@ -35,12 +35,22 @@
 .datenschutzLink {
   color: white;
   text-decoration: none;
+  padding: 2px 0;
+  width: min-content;
+}
+
+.underline {
+  height: 0.5px;
+  background-color: white;
+  margin-bottom: 4px;
+  margin-top: 4px;
+  width: 100px;
 }
 
 .footerLink:hover {
   color: white;
   transition: all 0.3s;
-  transform: translateX(15px);
+  padding-left: 15px;
 }
 
 .impressumLink:hover {
