@@ -75,6 +75,12 @@
   transition: transform 0.3s ease; /* Übergangseffekt für eine sanftere Veränderung */
 }
 
+.links {
+  margin-left: -9%;
+  padding-right: 3%;
+  color: white;
+}
+
 .shrink {
   transform: scale(0.9); /* Verkleinert das Logo leicht */
 }
