@@ -17,6 +17,26 @@ function LoginButtonPopup({ onClose, onLoginSuccess, onRegister }) {
     event.stopPropagation();
   }
 
+  // External function to determine the login message style
+  const getLoginMessageStyle = (loginMessage) => {
+    let backgroundColor = "";
+    if (loginMessage === "Login successful!") {
+      backgroundColor = "var(--background-color)";
+    } else {
+      backgroundColor = "var(--secondary-color)";
+    }
+    const boxShadow =
+      loginMessage === "Login successful!" ? "2px 2px 4px black" : "";
+    let display = "";
+    if (loginMessage) {
+      display = "flex";
+    } else {
+      display = "none";
+    }
+
+    return { backgroundColor, boxShadow, display };
+  };
+
   return (
     <div className={styles.container} onClick={onClose}>
       <div className={styles.popup} onClick={onClickChild}>
@@ -40,19 +60,7 @@ function LoginButtonPopup({ onClose, onLoginSuccess, onRegister }) {
         <button onClick={onRegister}>Register</button>
         <div
           className={styles.loginMessage}
-          style={{
-            backgroundColor:
-              loginMessage === "Login successful!"
-                ? "var(--background-color)"
-                : "var(--secondary-color)",
-            boxShadow:
-              loginMessage === "Login successful!" ? "2px 2px 4px black" : "",
-            display:
-              loginMessage === "Login successful!" ||
-              loginMessage === "Username/Password does not match."
-                ? "flex"
-                : "none",
-          }}
+          style={getLoginMessageStyle(loginMessage)}
         >
           {loginMessage && <p>{loginMessage}</p>}
         </div>
