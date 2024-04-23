@@ -32,13 +32,40 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const login = () => {
+  const login = async (username, password, onLoginSuccess, setLoginMessage) => {
     // Implementiere hier die Logik für den Login
-    setIsLoggedIn(true);
-    //ersetze die loginlogik hier
-    const newUserId = 2;
-    setUserID(newUserId);
-    getUserHistory(newUserId);
+    try {
+      const body = {
+        username,
+        password,
+      };
+
+      const response = await axios.post(
+        "http://localhost:5050/v1/user/login",
+        body
+      );
+
+      //nutze die userid
+      if (response.status === 200) {
+        const newUserId=response.data.user.id;
+        setLoginMessage("Login successful!");
+        setUserID(newUserId);
+        getUserHistory(newUserId);
+        setIsLoggedIn(true);
+        onLoginSuccess();
+      } else {
+        setLoginMessage(
+          "Login failed. Please check your credentials and try again."
+        );
+      }
+    } catch (error) {
+      //console.error("Error:", error.message);
+      if (error.response.status === 401) {
+        setLoginMessage("Username/Password does not match.");
+      } else {
+        setLoginMessage("An error occurred. Please try again later.");
+      }
+    }
   };
 
   const logout = () => {
@@ -50,7 +77,7 @@ export const AuthProvider = ({ children }) => {
   // Bereitstellen des AuthContexts für Kinderkomponenten mit dem aktuellen Login-Status und den Login-/Logout-Funktionen
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn, userID, login, logout, userHistory, setUserHistory }}
+      value={{ isLoggedIn, userID, login, logout, userHistory, setUserHistory, setIsLoggedIn }}
     >
       {children}
     </AuthContext.Provider>

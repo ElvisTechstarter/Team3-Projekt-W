@@ -11,6 +11,10 @@
 .buttonContainer {
   margin-left: 30px;
 }
+.buttonContainerlogin {
+  display: flex;
+  flex-direction: row;
+}
 
 .spacer {
   width: 17px;
