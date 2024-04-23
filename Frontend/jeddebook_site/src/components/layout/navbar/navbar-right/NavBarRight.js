@@ -41,7 +41,10 @@ function NavBarRight() {
         <LoginButtonPopup
           onClose={() => setShowLoginButtonPopup(false)}
           onLoginSuccess={handleLogin}
-          onRegister={() => setShowRegisterButtonPopup(true)}
+          onRegister={() => {
+            closePopups();
+            setShowRegisterButtonPopup(true);
+          }}
         />
       )}
       {showRegisterButtonPopup && (
