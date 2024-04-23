@@ -20,6 +20,11 @@ function NavBarRight() {
     setShowRegisterButtonPopup(false);
   };
 
+  const closePopups = () => {
+    setShowLoginButtonPopup(false);
+    setShowRegisterButtonPopup(false);
+  };
+
   const handleLogout = () => {
     logout();
   };
@@ -56,21 +61,31 @@ function NavBarRight() {
           <div className={styles.buttonContainer}>
             <StandardBtn
               text={"Login"}
-              onClick={() => setShowLoginButtonPopup(true)}
+              onClick={() => {
+                closePopups();
+                setShowLoginButtonPopup(true);
+              }}
               style={{ fontWeight: 500 }}
             />
           </div>
           <div className={styles.spacer} />
           <StandardBtn
             text={"Register"}
-            onClick={() => setShowRegisterButtonPopup(true)}
+            onClick={() => {
+              closePopups();
+              setShowRegisterButtonPopup(true);
+            }}
             style={{ fontWeight: 500 }}
           />
         </>
       )}
       <div className={styles.spacer} />
       <Link to="/game" className={styles.gameLink} onClick={scrollToTop}>
-        <StandardBtn text={"Game"} style={{ fontWeight: 500 }} />
+        <StandardBtn
+          text={"Game"}
+          onClick={() => closePopups()}
+          style={{ fontWeight: 500 }}
+        />
       </Link>
       <div className={styles.marginright} />
     </div>
