@@ -50,9 +50,5 @@
   &:hover {
     cursor: pointer;
     background-color: var(--secondary-color);
-
-    &:not(:last-child) {
-      margin-right: 8px;
-    }
   }
 }
