@@ -42,7 +42,9 @@ function LoginButtonPopup({ onClose, onLoginSuccess, onRegister }) {
           className={styles.loginMessage}
           style={{
             backgroundColor:
-              loginMessage === "Login successful!" ? "blue" : "red",
+              loginMessage === "Login successful!"
+                ? "var(--background-color)"
+                : "var(--secondary-color)",
             boxShadow:
               loginMessage === "Login successful!" ? "2px 2px 4px black" : "",
             display:
