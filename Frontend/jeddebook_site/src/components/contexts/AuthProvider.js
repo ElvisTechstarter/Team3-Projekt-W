@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }) => {
 
       //nutze die userid
       if (response.status === 200) {
-        const newUserId=response.data.user.id;
+        const newUserId = response.data.user.id;
         setLoginMessage("Login successful!");
         setUserID(newUserId);
         getUserHistory(newUserId);
@@ -59,9 +59,12 @@ export const AuthProvider = ({ children }) => {
         );
       }
     } catch (error) {
-      //console.error("Error:", error.message);
-      if (error.response.status === 401) {
+      if (error.response && error.response.status === 401) {
         setLoginMessage("Username/Password does not match.");
+      } else if (error.code === "ECONNREFUSED") {
+        setLoginMessage(
+          "Connection refused. Please check the server availability."
+        );
       } else {
         setLoginMessage("An error occurred. Please try again later.");
       }
@@ -77,7 +80,15 @@ export const AuthProvider = ({ children }) => {
   // Bereitstellen des AuthContexts für Kinderkomponenten mit dem aktuellen Login-Status und den Login-/Logout-Funktionen
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn, userID, login, logout, userHistory, setUserHistory, setIsLoggedIn }}
+      value={{
+        isLoggedIn,
+        userID,
+        login,
+        logout,
+        userHistory,
+        setUserHistory,
+        setIsLoggedIn,
+      }}
     >
       {children}
     </AuthContext.Provider>
