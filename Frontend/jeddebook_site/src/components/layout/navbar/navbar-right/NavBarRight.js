@@ -12,10 +12,6 @@ function NavBarRight() {
   const { isLoggedIn, setIsLoggedIn, logout } = useContext(AuthContext);
 
   const handleLogin = () => {
-    setShowLoginButtonPopup(false);
-  };
-
-  const handleLoginSuccess = () => {
     setIsLoggedIn(true);
     setShowLoginButtonPopup(false); // Hier das Popup ausblenden
   };
@@ -39,7 +35,7 @@ function NavBarRight() {
       {showLoginButtonPopup && (
         <LoginButtonPopup
           onClose={() => setShowLoginButtonPopup(false)}
-          onLoginSuccess={handleLoginSuccess}
+          onLoginSuccess={handleLogin}
           onRegister={() => setShowRegisterButtonPopup(true)}
         />
       )}
