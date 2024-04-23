@@ -6,7 +6,7 @@ const SearchContext = createContext(null);
 
 export const SearchProvider = ({ children }) => {
   const [response, setResponse] = useState(null);
-  const { isLoggedIn, userID } = useContext(AuthContext);
+  const { isLoggedIn, userID, setUserHistory } = useContext(AuthContext);
 
   const handleSearch = async (inputValue) => {
     if (inputValue === "") return;
@@ -19,6 +19,7 @@ export const SearchProvider = ({ children }) => {
             params: { query: inputValue },
           }
         );
+        console.log(response);
         setResponse(response);
       } else {
         const response = await axios.post(
@@ -27,8 +28,9 @@ export const SearchProvider = ({ children }) => {
             params: { query: inputValue, user: userID },
           }
         );
-        //console.log(response);
+        console.log(response);
         setResponse(response);
+        setUserHistory(response.data.userHistoryEntries);
       }
     } catch (error) {
       setResponse(undefined);
