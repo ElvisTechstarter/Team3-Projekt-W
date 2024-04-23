@@ -1,6 +1,8 @@
 import styles from "./TranslateInput.module.css";
 import React, { useState, useContext } from "react";
 import SearchContext from "./../../../contexts/SearchProvider";
+import { TbTrashX } from "react-icons/tb";
+import { ImSearch } from "react-icons/im";
 
 function TranslateInput({ onSearch, onClear }) {
   const [isPressed, setIsPressed] = useState(false);
@@ -47,10 +49,10 @@ function TranslateInput({ onSearch, onClear }) {
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
       >
-        🔍
+        <ImSearch size={22} />
       </button>
       <button className={styles.clearButton} onClick={handleClear}>
-        🗑️
+        <TbTrashX size={29} />
       </button>
     </div>
   );

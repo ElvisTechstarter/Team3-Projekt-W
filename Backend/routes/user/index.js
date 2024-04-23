@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");
-const { user_db } = require("../../database/models/user_db");
+const { user_db, user_history } = require("../../database/models/user_db");
 const UserRouter = Router();
 
 //  ***GET REQUESTS***
@@ -9,6 +9,27 @@ UserRouter.get("/profile/all", async (req, res) => {
   const allProfiles = await user_db.findAll();
 
   res.status(StatusCodes.OK).json({ profiles: allProfiles });
+});
+
+//Return the user history
+UserRouter.get("/profile/userhistory", async (req, res) => {
+  try {
+    //console.log(req.query);
+    queryid = req.query.userid;
+    //console.log("Userid=", queryid);
+    // Retrieve user history entries in descending order of creation date
+    const userHistoryEntries = await user_history.findAll({
+      where: { userId: queryid },
+      attributes: ["user_history_entry"],
+      limit: 5,
+      order: [["createdAt", "DESC"]], // Order by createdAt in descending order
+    });
+    //console.log(userHistoryEntries);
+    res.status(StatusCodes.OK).json({ userHistoryEntries });
+  } catch (error) {
+    console.error("Error querying the database:", error.message);
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Internal server error");
+  }
 });
 
 // Return profile from a specific user

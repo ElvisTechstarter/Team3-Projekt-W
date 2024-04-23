@@ -12,18 +12,20 @@ function NavBarRight() {
   const { isLoggedIn, setIsLoggedIn, logout } = useContext(AuthContext);
 
   const handleLogin = () => {
-    setShowLoginButtonPopup(true);
-    setShowRegisterButtonPopup(false); // Register-Popup ausblenden
-  };
 
-  const handleLoginSuccess = () => {
     setIsLoggedIn(true);
-    setShowLoginButtonPopup(false); // Login-Popup ausblenden
+    setTimeout(() => setShowLoginButtonPopup(false), 3000);
+
   };
 
   const handleRegister = () => {
     setShowRegisterButtonPopup(true);
     setShowLoginButtonPopup(false); // Login-Popup ausblenden
+  };
+
+  const closePopups = () => {
+    setShowLoginButtonPopup(false);
+    setShowRegisterButtonPopup(false);
   };
 
   const handleLogout = () => {
@@ -41,8 +43,11 @@ function NavBarRight() {
       {showLoginButtonPopup && (
         <LoginButtonPopup
           onClose={() => setShowLoginButtonPopup(false)}
-          onLoginSuccess={handleLoginSuccess}
-          onRegister={() => setShowRegisterButtonPopup(true)}
+          onLoginSuccess={handleLogin}
+          onRegister={() => {
+            closePopups();
+            setShowRegisterButtonPopup(true);
+          }}
         />
       )}
       {showRegisterButtonPopup && (
@@ -54,8 +59,7 @@ function NavBarRight() {
 
       <div className={styles.spacer} />
       {isLoggedIn ? (
-        <div className={styles.buttonContainer}>
-          <StandardBtn text={"Logged In"} />
+        <div className={styles.buttonContainerlogin}>
           <StandardBtn text={"Logout"} onClick={handleLogout} />
         </div>
       ) : (
@@ -63,23 +67,35 @@ function NavBarRight() {
           <div className={styles.buttonContainer}>
             <StandardBtn
               text={"Login"}
-              onClick={handleLogin}
+
+              onClick={() => {
+                closePopups();
+                setShowLoginButtonPopup(true);
+              }}
+
               style={{ fontWeight: 500 }}
             />
           </div>
           <div className={styles.spacer} />
           <StandardBtn
             text={"Register"}
-            onClick={handleRegister}
+
+            onClick={() => {
+              closePopups();
+              setShowRegisterButtonPopup(true);
+            }}
+
             style={{ fontWeight: 500 }}
           />
         </>
       )}
-
       <div className={styles.spacer} />
-
       <Link to="/game" className={styles.gameLink} onClick={scrollToTop}>
-        <StandardBtn text={"Game"} style={{ fontWeight: 500 }} />
+        <StandardBtn
+          text={"Game"}
+          onClick={() => closePopups()}
+          style={{ fontWeight: 500 }}
+        />
       </Link>
       <div className={styles.marginright} />
     </div>
