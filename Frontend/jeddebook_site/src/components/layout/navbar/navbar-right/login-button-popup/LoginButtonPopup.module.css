@@ -57,6 +57,7 @@
   }
 }
 
+/* styles.css */
 .loginMessage {
   margin-top: 10px;
   padding: 5px;
@@ -65,7 +66,5 @@
   max-width: 160px;
   max-height: 190px;
   color: white;
-  background-color: rgb(170, 22, 22);
-  box-shadow: 2px 2px 4px black;
   text-shadow: 1px 1px 1px black;
 }

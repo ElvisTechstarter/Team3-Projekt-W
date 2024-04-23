@@ -43,6 +43,13 @@ function LoginButtonPopup({ onClose, onLoginSuccess, onRegister }) {
           style={{
             backgroundColor:
               loginMessage === "Login successful!" ? "blue" : "red",
+            boxShadow:
+              loginMessage === "Login successful!" ? "2px 2px 4px black" : "",
+            display:
+              loginMessage === "Login successful!" ||
+              loginMessage === "Username/Password does not match."
+                ? "flex"
+                : "none",
           }}
         >
           {loginMessage && <p>{loginMessage}</p>}
