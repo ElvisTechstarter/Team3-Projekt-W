@@ -13,7 +13,7 @@ function NavBarRight() {
 
   const handleLogin = () => {
     setIsLoggedIn(true);
-    setShowLoginButtonPopup(false); // Hier das Popup ausblenden
+    setTimeout(() => setShowLoginButtonPopup(false), 3000);
   };
 
   const handleRegister = () => {
@@ -49,8 +49,6 @@ function NavBarRight() {
       <div className={styles.spacer} />
       {isLoggedIn ? (
         <div className={styles.buttonContainerlogin}>
-          <StandardBtn text={"Logged In"} />
-          <div className={styles.spacer} />
           <StandardBtn text={"Logout"} onClick={handleLogout} />
         </div>
       ) : (
@@ -70,9 +68,7 @@ function NavBarRight() {
           />
         </>
       )}
-
       <div className={styles.spacer} />
-
       <Link to="/game" className={styles.gameLink} onClick={scrollToTop}>
         <StandardBtn text={"Game"} style={{ fontWeight: 500 }} />
       </Link>
