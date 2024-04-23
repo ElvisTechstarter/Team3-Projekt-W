@@ -52,8 +52,9 @@ function NavBarRight() {
 
       <div className={styles.spacer} />
       {isLoggedIn ? (
-        <div className={styles.buttonContainer}>
+        <div className={styles.buttonContainerlogin}>
           <StandardBtn text={"Logged In"} />
+          <div className={styles.spacer} />
           <StandardBtn text={"Logout"} onClick={handleLogout} />
         </div>
       ) : (
