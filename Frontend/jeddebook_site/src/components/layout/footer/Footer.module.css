@@ -1,6 +1,4 @@
 /* Footer.module.css */
-@import "../../../styles/GlobalVars.css";
-
 .mainContainer {
   min-height: 50px;
   background-color: var(--background-color);
@@ -53,45 +51,52 @@
   margin-bottom: 1%;
 }
 
+.logoContainer {
+  cursor: pointer; /* Ändert den Mauszeiger beim Überfahren des Logos */
+}
+
+.logoLink {
+  text-decoration: none; /* Entfernt die Unterstreichung des Links */
+}
+
 .logo {
   height: 135px;
   margin-right: 4%;
+  transition: transform 0.3s ease; /* Übergangseffekt für eine sanftere Veränderung */
 }
 
-.links {
-  margin-left: -9%;
-  padding-right: 3%;
-  color: white;
+.shrink {
+  transform: scale(0.9); /* Verkleinert das Logo leicht */
 }
 
 .socialMediaLinks {
   display: flex;
   flex-direction: column;
   margin-right: 42%;
-  align-items: flex-start; /* Änderung: Elemente linksbündig ausrichten */
+  align-items: flex-start;
   margin-top: 0;
 }
 
 .socialMediaLinks a {
-  color: white; /* Schriftfarbe der Social Media Links */
+  color: white;
   text-decoration: none;
 }
 
 .links a {
-  color: white; /* Schriftfarbe der Links */
+  color: white;
   text-decoration: none;
 }
 
 .separator {
   border: none;
-  border-top: 1px solid #fff; /* Farbe und Stil der Trennlinie */
-  width: 93%; /* Breite der Trennlinie */
-  margin: 0; /* Abstand über und unter der Trennlinie */
+  border-top: 1px solid #fff;
+  width: 93%;
+  margin: 0;
 }
 
 .socialMediaLinks hr {
-  margin-top: -8px; /* Änderung: Margin oben entfernen */
-  margin-bottom: 12px; /* Änderung: Margin unten hinzufügen */
+  margin-top: -8px;
+  margin-bottom: 12px;
 }
 
 .socialMediaIcons {
@@ -105,5 +110,5 @@
 }
 
 .socialMediaIcon:hover {
-  transform: translateY(5px); /* Bewegung nach unten bei Hover */
+  transform: translateY(5px);
 }

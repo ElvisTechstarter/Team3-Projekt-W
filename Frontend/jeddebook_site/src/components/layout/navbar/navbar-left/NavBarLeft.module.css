@@ -1,3 +1,4 @@
+/* NavBarLeft.module.css */
 .mainContainer {
   height: 100%;
   width: max-content;
@@ -10,6 +11,10 @@
   margin-top: 10px;
   margin-bottom: 5px;
   margin-left: -19%;
+  transition: transform 0.3s ease; /* Übergangseffekt für eine sanftere Veränderung */
+  cursor: pointer; /* Standardmauszeiger beim Überfahren */
 }
-@media screen and (min-width: 320px) {
+
+.shrink {
+  transform: scale(0.9); /* Verkleinert das Logo leicht */
 }
