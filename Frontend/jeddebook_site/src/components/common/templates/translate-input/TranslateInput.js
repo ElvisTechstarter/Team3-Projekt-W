@@ -30,9 +30,9 @@ function TranslateInput({ onSearch, onClear }) {
 
   const handleInputChange = (event) => {
     const value = event.target.value;
-    setInputValue(value);
     let searchTimeout = 1000;
     clearTimeout(searchTimeout);
+    setInputValue(value);
     searchTimeout = setTimeout(() => {
       handleSuggestions(value, setSuggestions);
       console.log("trying to find suggestion with input ", value);
