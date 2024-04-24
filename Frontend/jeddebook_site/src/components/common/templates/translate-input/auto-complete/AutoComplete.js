@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./AutoComplete.module.css";
 
 const AutoComplete = ({ suggestions }) => {
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
@@ -62,6 +63,7 @@ const AutoComplete = ({ suggestions }) => {
   return (
     <>
       <input
+        className={styles.searchInput}
         type="text"
         onChange={onChange}
         onKeyDown={onKeyDown}
