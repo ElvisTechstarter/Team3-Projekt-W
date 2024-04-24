@@ -8,11 +8,8 @@ function TranslateInput({ onSearch, onClear }) {
   const [isPressed, setIsPressed] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [inputFocused, setInputFocused] = useState(false);
-
-  const { handleSearch } = useContext(SearchContext);
-
-  // Example list of suggestions (you can replace this with your own data)
-  const suggestions = ["apple", "banana", "cherry", "grape", "orange"];
+  const [suggestions, setSuggestions] = useState([]);
+  const { handleSearch, handleSuggestions } = useContext(SearchContext);
 
   const handleInputFocus = () => {
     setInputFocused(true);
@@ -34,6 +31,13 @@ function TranslateInput({ onSearch, onClear }) {
   const handleInputChange = (event) => {
     const value = event.target.value;
     setInputValue(value);
+    let searchTimeout = 1000;
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
+      handleSuggestions(value, setSuggestions);
+      console.log("trying to find suggestion with input ", value);
+      //fetchSuggestions(value);
+    }, 1000);
   };
 
   const handleClear = () => {
@@ -76,14 +80,17 @@ function TranslateInput({ onSearch, onClear }) {
       <div className={styles.suggestionsContainer}>
         {inputValue && inputFocused && (
           <ul className={styles.suggestionsList}>
-            {suggestions.map((suggestion) => (
+            {suggestions.map((filteredSuggestion) => (
               <li
-                key={suggestion}
-                onClick={() => handleSelectSuggestion(suggestion)}
+                key={filteredSuggestion}
+                onClick={() => handleSelectSuggestion(filteredSuggestion)}
               >
-                {suggestion}
+                {filteredSuggestion}
               </li>
             ))}
+            {suggestions.filter((suggestion) =>
+              suggestion.toLowerCase().includes(inputValue.toLowerCase())
+            ).length === 0 && <li>No match.</li>}
           </ul>
         )}
       </div>
