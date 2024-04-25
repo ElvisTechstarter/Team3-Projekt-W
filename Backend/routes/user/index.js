@@ -1,8 +1,6 @@
 const { Router } = require("express");
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");
-const UserDB = require("../../database/models/user_db");
-const user_db = require("../../database/models/user_db");
-
+const { user_db, user_history } = require("../../database/models/user_db");
 const UserRouter = Router();
 
 //  ***GET REQUESTS***
@@ -11,6 +9,27 @@ UserRouter.get("/profile/all", async (req, res) => {
   const allProfiles = await user_db.findAll();
 
   res.status(StatusCodes.OK).json({ profiles: allProfiles });
+});
+
+//Return the user history
+UserRouter.get("/profile/userhistory", async (req, res) => {
+  try {
+    //console.log(req.query);
+    queryid = req.query.userid;
+    //console.log("Userid=", queryid);
+    // Retrieve user history entries in descending order of creation date
+    const userHistoryEntries = await user_history.findAll({
+      where: { userId: queryid },
+      attributes: ["user_history_entry"],
+      limit: 5,
+      order: [["createdAt", "DESC"]], // Order by createdAt in descending order
+    });
+    //console.log(userHistoryEntries);
+    res.status(StatusCodes.OK).json({ userHistoryEntries });
+  } catch (error) {
+    console.error("Error querying the database:", error.message);
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Internal server error");
+  }
 });
 
 // Return profile from a specific user
@@ -24,7 +43,6 @@ UserRouter.get("/profile", async (req, res) => {
 
   res.status(StatusCodes.OK).json({ profile: userProfile });
 });
-
 // POST REQUESTS
 UserRouter.post("/register", async (req, res) => {
   const { newUserName, newUserMail, newUserPW } = req.body;
@@ -38,6 +56,34 @@ UserRouter.post("/register", async (req, res) => {
   const users = await user_db.create(newUser);
 
   res.status(StatusCodes.OK).json({ users: users });
+});
+// POST-Anfrage für Benutzeranmeldung
+UserRouter.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    // Überprüfen, ob der Benutzer in der Datenbank vorhanden ist
+    const user = await user_db.findOne({
+      where: { user_name: username, user_pw: password },
+    });
+
+    if (!user) {
+      // Wenn der Benutzer nicht gefunden wurde, sende eine Fehlermeldung zurück
+      return res
+        .status(StatusCodes.UNAUTHORIZED)
+        .json({ message: "Invalid username or password" });
+    }
+
+    // Wenn der Benutzer gefunden wurde, sende eine Erfolgsmeldung zurück
+    res
+      .status(StatusCodes.OK)
+      .json({ message: "Login successful", user: user });
+  } catch (error) {
+    console.error("Error:", error.message);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "An error occurred" });
+  }
 });
 
 // DELETE REQUEST

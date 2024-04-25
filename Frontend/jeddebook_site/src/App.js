@@ -7,6 +7,8 @@ import HomePage from "./pages/home-page";
 import LoggedInPage from "./pages/loggedin-page";
 import GamePage from "./pages/game-page";
 import ImpressumPage from "./pages/impressum-page";
+import AGBPage from "./pages/agb-page";
+import DatenschutzPage from "./pages/datenschutz-page";
 import Content from "./components/layout/content";
 import Footer from "./components/layout/footer";
 import { AuthProvider } from "./components/contexts/AuthProvider";
@@ -33,6 +35,7 @@ function App() {
             </Content>
             <Footer />
           </div>
+
         </SearchProvider>
       </AuthProvider>
     </BrowserRouter>

@@ -1,6 +1,4 @@
 /* Footer.module.css */
-@import "../../../styles/GlobalVars.css";
-
 .mainContainer {
   min-height: 50px;
   background-color: var(--background-color);
@@ -32,15 +30,19 @@
 }
 
 .footerLink,
-.impressumLink {
+.impressumLink,
+.agbLink,
+.datenschutzLink {
   color: white;
   text-decoration: none;
+  padding: 2px 0;
+  width: min-content;
 }
 
 .footerLink:hover {
   color: white;
   transition: all 0.3s;
-  transform: translateX(15px);
+  padding-left: 15px;
 }
 
 .impressumLink:hover {
@@ -51,11 +53,83 @@
   margin-bottom: 1%;
 }
 
+.logoContainer {
+  cursor: pointer;
+}
+
+.logoLink {
+  text-decoration: none;
+}
+
 .logo {
   height: 135px;
   margin-right: 4%;
+  transition: transform 0.3s ease;
 }
 
 .links {
   margin-left: -9%;
+  padding-right: 3%;
+  color: white;
+}
+
+.links hr {
+  height: 1px;
+  width: 100%;
+}
+
+.links:hover hr {
+  width: 100%;
+}
+
+.shrink {
+  transform: scale(0.9);
+}
+
+.socialMediaLinks {
+  display: flex;
+  flex-direction: column;
+  margin-right: 49%;
+  align-items: flex-start;
+  margin-top: 0;
+}
+
+.socialMediaLinks a {
+  color: white;
+  text-decoration: none;
+}
+
+.links a {
+  color: white;
+  text-decoration: none;
+}
+
+.separator {
+  border: none;
+  border-top: 1px solid white;
+  width: 93%;
+  margin: 0;
+}
+
+.links:hover .separator {
+  width: 93%;
+}
+
+.socialMediaLinks hr {
+  margin-top: -8px;
+  margin-bottom: 12px;
+}
+
+.socialMediaIcons {
+  font-size: 30px;
+  margin-bottom: 18px;
+}
+
+.socialMediaIcon {
+  margin-right: 10px;
+  transition: transform 0.3s ease;
+}
+
+.socialMediaIcon:hover {
+  transform: translateY(5px);
 }
