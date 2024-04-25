@@ -73,6 +73,13 @@ function TranslateInput({ onSearch, onClear }) {
     return null;
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      // Call your function here (e.g., handleSendMessage)
+      handleSearch(inputValue);
+      //console.log("Enter key pressed");
+    }
+  };
   return (
     <div className={styles.outerContainer}>
       <div className={styles.mainContainer}>
@@ -84,6 +91,7 @@ function TranslateInput({ onSearch, onClear }) {
           onChange={handleInputChange}
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
+          onKeyDown={handleKeyDown}
         />
 
         <div className={styles.buttonContainer}>
