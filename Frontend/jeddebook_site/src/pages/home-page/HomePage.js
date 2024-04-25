@@ -2,6 +2,7 @@ import styles from "./HomePage.module.css";
 import TranslateInput from "../../components/common/templates/translate-input";
 import TranslateOutput from "../../components/common/templates/translate-output";
 import SearchHistory from "../../components/common/templates/search-history";
+import ImageSearch from "../../components/common/templates/image-search";
 
 function HomePage() {
   return (
@@ -14,6 +15,10 @@ function HomePage() {
           <TranslateOutput />
         </div>
       </div>
+      <div className={styles.imageSearchContainer}>
+        <ImageSearch />
+      </div>
+
       <SearchHistory isLoggedIn={true} />
     </div>
   );

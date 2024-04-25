@@ -1,0 +1,25 @@
+.maincontainer {
+  background-color: yellow;
+}
+
+.imagecontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 50%;
+  background-color: red;
+  height: 500px;
+}
+
+.imagecontainer img {
+  margin-bottom: 10px;
+  max-width: 32%;
+  height: auto;
+  border-radius: 5px;
+  cursor: pointer;
+  object-fit: cover; /* Alle Bilder werden proportional skaliert */
+}
+
+.imagecontainer img:hover {
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+}
