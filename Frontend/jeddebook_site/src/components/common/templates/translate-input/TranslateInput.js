@@ -5,30 +5,36 @@ import { TbTrashX } from "react-icons/tb";
 import { ImSearch } from "react-icons/im";
 
 function TranslateInput({ onSearch, onClear }) {
-  const [isPressed, setIsPressed] = useState(false);
-  const [inputValue, setInputValue] = useState("");
-  const [inputFocused, setInputFocused] = useState(false);
-  const [suggestions, setSuggestions] = useState([]);
-  const [hoveredSuggestion, setHoveredSuggestion] = useState(null);
-  const { handleSearch, handleSuggestions } = useContext(SearchContext);
+  const [isPressed, setIsPressed] = useState(false); //state for icons
+  const [inputValue, setInputValue] = useState(""); //state for searchinput
+  const [inputFocused, setInputFocused] = useState(false); //state for searchfield
+  const [suggestions, setSuggestions] = useState([]); //state for suggestion
+  const [hoveredSuggestion, setHoveredSuggestion] = useState(null); //state for hovered suggestion
+  const [suggestionImage, setSuggestionImage] = useState(""); // state for image url
+  const { handleSearch, handleSuggestions } = useContext(SearchContext); //handle databaserequests
+  const imageUrl =
+    "http://localhost:3000/static/media/jeddebook_logo.28e0629874b01b55eccc.png"; //fixed url for testing purposes
 
+  //if searchfield is active
   const handleInputFocus = () => {
     setInputFocused(true);
   };
-
+  //if searchfield is not active anymore
   const handleInputBlur = () => {
     setTimeout(() => setInputFocused(false), 200);
   };
 
+  //on button down for icons
   const handleMouseDown = () => {
     setIsPressed(true);
   };
-
+  //on release for icons
   const handleMouseUp = () => {
     setIsPressed(false);
     handleSearch(inputValue);
   };
 
+  //debounces suggestion logic
   useEffect(() => {
     const timer = setTimeout(() => {
       if (inputValue.length > 0) {
@@ -43,35 +49,43 @@ function TranslateInput({ onSearch, onClear }) {
     setInputValue(value);
   };
 
+  //function for bin-icon
   const handleClear = () => {
     setInputValue("");
   };
 
+  //handles clickin gon suggestions
   const handleSelectSuggestion = (suggestion) => {
     setInputValue(suggestion);
     handleInputBlur();
     handleSearch(suggestion);
   };
 
+  //handles the hovering over suggestions
   const handleMouseEnter = (filteredSuggestion) => {
     setHoveredSuggestion(filteredSuggestion);
-    //console.log("mouse entered suggestion", filteredSuggestion);
   };
 
+  //removes the container if mouseover is done
   const handleMouseLeave = () => {
     setHoveredSuggestion(null);
   };
 
-  const handleSuggestionImage = () => {
-    //const imageQuery=hoveredSuggestion;
-    return (
-      <img
-        src="http://localhost:3000/static/media/jeddebook_logo.28e0629874b01b55eccc.png"
-        alt=""
-      />
-    );
-  };
+  //debounces the call of the image
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (hoveredSuggestion) {
+        setSuggestionImage(imageUrl);
+      }
+    }, 500);
 
+    return () => {
+      clearTimeout(timer);
+      setSuggestionImage("");
+    };
+  }, [hoveredSuggestion]);
+
+  //renders the whole suggestions div
   const renderSuggestions = () => {
     if (inputValue && inputFocused) {
       return (
@@ -86,7 +100,7 @@ function TranslateInput({ onSearch, onClear }) {
               {filteredSuggestion}
               {hoveredSuggestion === filteredSuggestion && (
                 <div className={styles.imageContainer}>
-                  {handleSuggestionImage()}
+                  <img src={suggestionImage} alt="" />
                 </div>
               )}
             </li>

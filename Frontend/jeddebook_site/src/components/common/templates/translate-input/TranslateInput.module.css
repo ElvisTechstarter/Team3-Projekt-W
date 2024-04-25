@@ -72,7 +72,7 @@
 
 .imageContainer img {
   max-width: 100%; /* Ensure the image fits within the container */
-  max-height: 100px; /* Set a maximum height for the image */
+  max-height: 150px; /* Set a maximum height for the image */
 }
 
 /* Adjust the position of the buttons */
