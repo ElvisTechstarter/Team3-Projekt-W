@@ -1,5 +1,6 @@
 .mainContainer {
   border-radius: 8px;
+  box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.75);
   background-color: var(--background-color);
 }
 
@@ -32,10 +33,10 @@
   flex-wrap: wrap;
 }
 
-.img {
+.img img {
   margin-bottom: 10px;
+  border-radius: 16px;
   width: auto;
-  max-height: 500px;
   cursor: pointer;
   object-fit: cover; /* Alle Bilder werden proportional skaliert */
   margin: 20px;
@@ -43,5 +44,5 @@
 }
 
 .imagecontainer img:hover {
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 6px 6px 8px 0px rgba(255, 255, 255, 0.75);
 }
