@@ -9,6 +9,7 @@ function TranslateInput({ onSearch, onClear }) {
   const [inputValue, setInputValue] = useState("");
   const [inputFocused, setInputFocused] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
+  const [hoveredSuggestion, setHoveredSuggestion] = useState(null);
   const { handleSearch, handleSuggestions } = useContext(SearchContext);
 
   const handleInputFocus = () => {
@@ -52,6 +53,25 @@ function TranslateInput({ onSearch, onClear }) {
     handleSearch(suggestion);
   };
 
+  const handleMouseEnter = (filteredSuggestion) => {
+    setHoveredSuggestion(filteredSuggestion);
+    //console.log("mouse entered suggestion", filteredSuggestion);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredSuggestion(null);
+  };
+
+  const handleSuggestionImage = () => {
+    //const imageQuery=hoveredSuggestion;
+    return (
+      <img
+        src="http://localhost:3000/static/media/jeddebook_logo.28e0629874b01b55eccc.png"
+        alt=""
+      />
+    );
+  };
+
   const renderSuggestions = () => {
     if (inputValue && inputFocused) {
       return (
@@ -60,8 +80,15 @@ function TranslateInput({ onSearch, onClear }) {
             <li
               key={filteredSuggestion}
               onClick={() => handleSelectSuggestion(filteredSuggestion)}
+              onMouseEnter={() => handleMouseEnter(filteredSuggestion)}
+              onMouseLeave={() => handleMouseLeave()}
             >
               {filteredSuggestion}
+              {hoveredSuggestion === filteredSuggestion && (
+                <div className={styles.imageContainer}>
+                  {handleSuggestionImage()}
+                </div>
+              )}
             </li>
           ))}
           {suggestions.filter((suggestion) =>

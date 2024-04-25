@@ -54,10 +54,25 @@
   padding: 8px 16px;
   cursor: pointer;
   transition: background-color 0.2s;
+  position: relative;
 }
 
 .suggestionsList li:hover {
   background-color: #f5f5f5;
+  visibility: visible; /* Show image on hover */
+}
+.imageContainer {
+  display: inline-block;
+  position: absolute;
+  top: 100%; /* Position below the suggestion text */
+  left: 25%;
+  transition: visibility 0.3s ease; /* Smooth transition */
+  border-radius: 16px;
+}
+
+.imageContainer img {
+  max-width: 100%; /* Ensure the image fits within the container */
+  max-height: 100px; /* Set a maximum height for the image */
 }
 
 /* Adjust the position of the buttons */
