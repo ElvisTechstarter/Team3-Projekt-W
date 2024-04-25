@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
           params: { userid: inputID },
         }
       );
-      console.log(response);
+      //console.log(response);
       setUserHistory(response.data.userHistoryEntries);
     } catch (error) {
       console.error("Fehler bei der Anfrage:", error.message);

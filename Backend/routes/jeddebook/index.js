@@ -34,6 +34,55 @@ JeddebookRouter.get("/all", async (req, res) => {
   res.status(StatusCodes.OK).send(DE_EN_entries);
 });
 
+// Assuming you have a database model for suggestions (jeddebook_de_en) and a Sequelize instance (sequelize) set up
+
+// Modify the "/suggestions" route to fetch relevant suggestions based on user input
+JeddebookRouter.get("/suggestions", async (req, res) => {
+  const searchQuery = req.query.query;
+
+  try {
+    if (!searchQuery) {
+      // Handle the case when the query is empty
+      res.status(StatusCodes.BAD_REQUEST).send("Empty query");
+      return;
+    }
+
+    // Fetch suggestions based on the query (e.g., partially matching entries)
+    const suggestions = await jeddebook_de_en.findAll({
+      attributes: ["de_entry", "en_entry"], // Only select de_entry and en_entry
+      where: {
+        [Op.or]: [
+          { de_entry: { [Op.like]: `%${searchQuery}%` } },
+          { en_entry: { [Op.like]: `%${searchQuery}%` } },
+        ],
+      },
+    });
+
+    // Extract the relevant entry (either de_entry or en_entry) from each suggestion
+    const formattedSuggestions = suggestions.map((suggestion) => {
+      if (suggestion.de_entry && suggestion.en_entry) {
+        // Both entries exist, choose one based on preference (e.g., prioritize de_entry)
+        return { entry: suggestion.de_entry };
+      } else if (suggestion.de_entry) {
+        return { entry: suggestion.de_entry };
+      } else if (suggestion.en_entry) {
+        return { entry: suggestion.en_entry };
+      }
+      return null; // No valid entry found
+    });
+
+    // Filter out null entries (if any)
+    const filteredSuggestions = formattedSuggestions.filter(
+      (entry) => entry !== null
+    );
+
+    res.status(StatusCodes.OK).json(filteredSuggestions.slice(0, 10));
+  } catch (error) {
+    console.error("Error fetching suggestions:", error.message);
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Internal server error");
+  }
+});
+
 JeddebookRouter.get("/byEntry", async (req, res) => {
   //Extract the searchterm
   const searchQuery = req.query.query;
