@@ -18,7 +18,16 @@ module.exports = async () => {
     await dbSequelize.sync();
 
     // DB mit Daten füllen, um DB auf Test Szenarien vorzubereiten
-    await jeddebook_de_en.bulkCreate(TestData_en_de);
+    const dict = {};
+    TestData_en_de.forEach((entry) => {
+      dict[entry.en_entry] = entry.de_entry;
+    });
+    const reversedData = Object.entries(dict).map(([en_entry, de_entry]) => ({
+      en_entry,
+      de_entry,
+    }));
+
+    await jeddebook_de_en.bulkCreate(reversedData);
     await user_db.bulkCreate(testdata_user_db.testdata_users);
     await user_history.bulkCreate(testdata_user_db.testdata_user_history);
     console.log("Test DB init");

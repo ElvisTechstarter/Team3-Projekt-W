@@ -21,7 +21,7 @@ export const SearchProvider = ({ children }) => {
             params: { query: input },
           }
         );
-        console.log(response);
+        //console.log(response);
         setResponse(response);
       } else {
         const response = await axios.post(
@@ -30,7 +30,7 @@ export const SearchProvider = ({ children }) => {
             params: { query: input, user: userID },
           }
         );
-        console.log(response);
+        //console.log(response);
         setResponse(response);
         setUserHistory(response.data.userHistoryEntries);
       }
@@ -40,8 +40,34 @@ export const SearchProvider = ({ children }) => {
     }
   };
 
+  const handleSuggestions = async (inputValue, setSuggestions) => {
+    if (inputValue < 2) return;
+    try {
+      const response = await axios.get(
+        "http://localhost:5050/v1/jeddebook/suggestions",
+        {
+          params: { query: inputValue },
+        }
+      );
+      if (response) {
+        //console.log(response);
+        let tmp = [];
+        response.data.forEach((element) => {
+          tmp.push(element.entry);
+        });
+        //console.log(tmp);
+        setSuggestions(tmp);
+      }
+    } catch (error) {
+      setResponse(undefined);
+      console.error("Fehler bei der Anfrage:", error.message);
+    }
+  };
+
   return (
-    <SearchContext.Provider value={{ response, handleSearch, query }}>
+    <SearchContext.Provider
+      value={{ response, handleSearch, handleSuggestions, query }}
+    >
       {children}
     </SearchContext.Provider>
   );
