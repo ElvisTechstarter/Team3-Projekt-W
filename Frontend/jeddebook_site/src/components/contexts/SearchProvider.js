@@ -10,8 +10,8 @@ export const SearchProvider = ({ children }) => {
   const { isLoggedIn, userID, setUserHistory } = useContext(AuthContext);
 
   const handleSearch = async (input) => {
-    setQuery(input);
     if (input === "") return;
+    setQuery(input);
     try {
       if (isLoggedIn === false) {
         // Sende die Daten an deinen Express-Server

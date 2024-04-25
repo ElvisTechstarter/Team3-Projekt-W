@@ -19,7 +19,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: baseline;
 }
 
 .searchInput {
@@ -45,9 +45,11 @@
   background-color: #fff;
   border: 1px solid #ccc;
   border-top: none;
+  margin-top: 0;
+  margin-left: 2%;
   border-radius: 0 0 4px 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 1;
+  position: absolute;
 }
 
 .suggestionsList li {

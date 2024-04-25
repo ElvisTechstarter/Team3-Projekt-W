@@ -14,6 +14,7 @@
   font-size: 250%;
   font-weight: 350;
   position: relative;
+  padding: 5px;
 }
 .headerUnderline {
   height: 2px;
