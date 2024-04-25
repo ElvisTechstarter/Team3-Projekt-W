@@ -104,9 +104,10 @@ function Footer() {
           </Link>{" "}
           |
           <Link to="/agb" onClick={scrollToTop} className={styles.agbLink}>
+            {" "}
             Allgemeine Geschäftsbedingungen
           </Link>{" "}
-          |
+          |{" "}
           <Link
             to="/datenschutz"
             onClick={scrollToTop}

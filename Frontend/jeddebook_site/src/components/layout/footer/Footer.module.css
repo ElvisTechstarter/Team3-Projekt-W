@@ -39,14 +39,6 @@
   width: min-content;
 }
 
-.underline {
-  height: 0.5px;
-  background-color: white;
-  margin-bottom: 4px;
-  margin-top: 4px;
-  width: 100px;
-}
-
 .footerLink:hover {
   color: white;
   transition: all 0.3s;
@@ -62,17 +54,17 @@
 }
 
 .logoContainer {
-  cursor: pointer; /* Ändert den Mauszeiger beim Überfahren des Logos */
+  cursor: pointer;
 }
 
 .logoLink {
-  text-decoration: none; /* Entfernt die Unterstreichung des Links */
+  text-decoration: none;
 }
 
 .logo {
   height: 135px;
   margin-right: 4%;
-  transition: transform 0.3s ease; /* Übergangseffekt für eine sanftere Veränderung */
+  transition: transform 0.3s ease;
 }
 
 .links {
@@ -81,14 +73,23 @@
   color: white;
 }
 
+.links hr {
+  height: 1px;
+  width: 100%;
+}
+
+.links:hover hr {
+  width: 100%;
+}
+
 .shrink {
-  transform: scale(0.9); /* Verkleinert das Logo leicht */
+  transform: scale(0.9);
 }
 
 .socialMediaLinks {
   display: flex;
   flex-direction: column;
-  margin-right: 42%;
+  margin-right: 49%;
   align-items: flex-start;
   margin-top: 0;
 }
@@ -105,9 +106,13 @@
 
 .separator {
   border: none;
-  border-top: 1px solid #fff;
+  border-top: 1px solid white;
   width: 93%;
   margin: 0;
+}
+
+.links:hover .separator {
+  width: 93%;
 }
 
 .socialMediaLinks hr {
