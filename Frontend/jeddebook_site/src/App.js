@@ -13,8 +13,7 @@ import Content from "./components/layout/content";
 import Footer from "./components/layout/footer";
 import { AuthProvider } from "./components/contexts/AuthProvider";
 import { SearchProvider } from "./components/contexts/SearchProvider";
-import MyComponent from './components/MyComponent';
-import ImageSearch from './components/ImageSearch'; // Hier wird ImageSearch importiert
+import ImageSearch from "./components/ImageSearch"; // Hier wird ImageSearch importiert
 
 function App() {
   return (
@@ -29,13 +28,12 @@ function App() {
                 <Route path="/loggedin" element={<LoggedInPage />} />
                 <Route path="/game" element={<GamePage />} />
                 <Route path="/impressum" element={<ImpressumPage />} />
-                <Route path="/mycomponent" element={<MyComponent />} /> {/* Beispielroute für MyComponent */}
-                <Route path="/imagesearch" element={<ImageSearch />} /> {/* Hier wird ImageSearch gerendert */}
+                <Route path="/imagesearch" element={<ImageSearch />} />{" "}
+                {/* Hier wird ImageSearch gerendert */}
               </Routes>
             </Content>
             <Footer />
           </div>
-
         </SearchProvider>
       </AuthProvider>
     </BrowserRouter>
@@ -43,4 +41,3 @@ function App() {
 }
 
 export default App;
-    
