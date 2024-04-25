@@ -19,7 +19,7 @@ export const SearchProvider = ({ children }) => {
             params: { query: inputValue },
           }
         );
-        console.log(response);
+        //console.log(response);
         setResponse(response);
       } else {
         const response = await axios.post(
@@ -28,7 +28,7 @@ export const SearchProvider = ({ children }) => {
             params: { query: inputValue, user: userID },
           }
         );
-        console.log(response);
+        //console.log(response);
         setResponse(response);
         setUserHistory(response.data.userHistoryEntries);
       }
@@ -53,7 +53,7 @@ export const SearchProvider = ({ children }) => {
         response.data.forEach((element) => {
           tmp.push(element.entry);
         });
-        console.log(tmp);
+        //console.log(tmp);
         setSuggestions(tmp);
       }
     } catch (error) {
