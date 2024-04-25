@@ -5,18 +5,20 @@ import AuthContext from "./AuthProvider";
 const SearchContext = createContext(null);
 
 export const SearchProvider = ({ children }) => {
+  const [query, setQuery] = useState(null);
   const [response, setResponse] = useState(null);
   const { isLoggedIn, userID, setUserHistory } = useContext(AuthContext);
 
-  const handleSearch = async (inputValue) => {
-    if (inputValue === "") return;
+  const handleSearch = async (input) => {
+    setQuery(input);
+    if (input === "") return;
     try {
       if (isLoggedIn === false) {
         // Sende die Daten an deinen Express-Server
         const response = await axios.get(
           "http://localhost:5050/v1/jeddebook/byEntry",
           {
-            params: { query: inputValue },
+            params: { query: input },
           }
         );
         //console.log(response);
@@ -25,7 +27,7 @@ export const SearchProvider = ({ children }) => {
         const response = await axios.post(
           "http://localhost:5050/v1/jeddebook/byEntry",
           {
-            params: { query: inputValue, user: userID },
+            params: { query: input, user: userID },
           }
         );
         //console.log(response);
@@ -64,7 +66,7 @@ export const SearchProvider = ({ children }) => {
 
   return (
     <SearchContext.Provider
-      value={{ response, handleSearch, handleSuggestions }}
+      value={{ response, handleSearch, handleSuggestions, query }}
     >
       {children}
     </SearchContext.Provider>

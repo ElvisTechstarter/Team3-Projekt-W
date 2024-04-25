@@ -1,0 +1,48 @@
+.mainContainer {
+  border-radius: 8px;
+  box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.75);
+  background-color: var(--background-color);
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  text-align: center;
+  font-size: 250%;
+  font-weight: 350;
+  position: relative;
+}
+.headerUnderline {
+  height: 2px;
+  background-color: white;
+  margin-top: 5px;
+  width: 100%;
+}
+
+.imagecontainer {
+  display: flex;
+  overflow: auto;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  column-count: 2; /* Set the desired number of columns */
+  column-gap: 20px; /* Adjust the gap between columns */
+  flex-wrap: wrap;
+}
+
+.img img {
+  margin-bottom: 10px;
+  border-radius: 16px;
+  width: auto;
+  cursor: pointer;
+  object-fit: cover; /* Alle Bilder werden proportional skaliert */
+  margin: 20px;
+  transition: box-shadow 0.3s ease;
+}
+
+.imagecontainer img:hover {
+  box-shadow: 6px 6px 8px 0px rgba(255, 255, 255, 0.75);
+}
