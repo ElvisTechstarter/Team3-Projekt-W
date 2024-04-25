@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styles from "./TranslateInput.module.css";
 import SearchContext from "./../../../contexts/SearchProvider";
 import { TbTrashX } from "react-icons/tb";
@@ -16,7 +16,7 @@ function TranslateInput({ onSearch, onClear }) {
   };
 
   const handleInputBlur = () => {
-    setTimeout(() => setInputFocused(false), 500);
+    setTimeout(() => setInputFocused(false), 200);
   };
 
   const handleMouseDown = () => {
@@ -28,16 +28,18 @@ function TranslateInput({ onSearch, onClear }) {
     handleSearch(inputValue);
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (inputValue.length > 0) {
+        handleSuggestions(inputValue, setSuggestions);
+      }
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [inputValue, handleSuggestions]);
+
   const handleInputChange = (event) => {
     const value = event.target.value;
-    let searchTimeout = 1000;
-    clearTimeout(searchTimeout);
     setInputValue(value);
-    searchTimeout = setTimeout(() => {
-      handleSuggestions(value, setSuggestions);
-      console.log("trying to find suggestion with input ", value);
-      //fetchSuggestions(value);
-    }, 1000);
   };
 
   const handleClear = () => {
@@ -46,7 +48,29 @@ function TranslateInput({ onSearch, onClear }) {
 
   const handleSelectSuggestion = (suggestion) => {
     setInputValue(suggestion);
+    handleInputBlur();
     handleSearch(suggestion);
+  };
+
+  const renderSuggestions = () => {
+    if (inputValue && inputFocused) {
+      return (
+        <ul className={styles.suggestionsList}>
+          {suggestions.map((filteredSuggestion) => (
+            <li
+              key={filteredSuggestion}
+              onClick={() => handleSelectSuggestion(filteredSuggestion)}
+            >
+              {filteredSuggestion}
+            </li>
+          ))}
+          {suggestions.filter((suggestion) =>
+            suggestion.toLowerCase().includes(inputValue.toLowerCase())
+          ).length === 0 && <li>No match.</li>}
+        </ul>
+      );
+    }
+    return null;
   };
 
   return (
@@ -77,23 +101,7 @@ function TranslateInput({ onSearch, onClear }) {
           </button>
         </div>
       </div>
-      <div className={styles.suggestionsContainer}>
-        {inputValue && inputFocused && (
-          <ul className={styles.suggestionsList}>
-            {suggestions.map((filteredSuggestion) => (
-              <li
-                key={filteredSuggestion}
-                onClick={() => handleSelectSuggestion(filteredSuggestion)}
-              >
-                {filteredSuggestion}
-              </li>
-            ))}
-            {suggestions.filter((suggestion) =>
-              suggestion.toLowerCase().includes(inputValue.toLowerCase())
-            ).length === 0 && <li>No match.</li>}
-          </ul>
-        )}
-      </div>
+      <div className={styles.suggestionsContainer}>{renderSuggestions()}</div>
     </div>
   );
 }
