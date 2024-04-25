@@ -30,16 +30,12 @@ function Footer() {
           Quicklinks
           <hr />
           <div className={styles.footerLink}>
-            <Link to="/" onClick={scrollToTop} className={styles.footerLink}>
+            <Link to="/" onClick={scrollToTop}>
               Homepage
             </Link>
           </div>
           <div className={styles.footerLink}>
-            <Link
-              to="/game"
-              onClick={scrollToTop}
-              className={styles.footerLink}
-            >
+            <Link to="/game" onClick={scrollToTop}>
               Game
             </Link>
           </div>

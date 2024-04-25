@@ -55,6 +55,7 @@
 
 .logoContainer {
   cursor: pointer;
+  margin-right: 4%;
 }
 
 .logoLink {
@@ -63,7 +64,7 @@
 
 .logo {
   height: 135px;
-  margin-right: 4%;
+  margin-right: 24%;
   transition: transform 0.3s ease;
 }
 
@@ -71,15 +72,14 @@
   margin-left: -9%;
   padding-right: 3%;
   color: white;
+  width: 110px;
 }
 
 .links hr {
-  height: 1px;
-  width: 100%;
-}
-
-.links:hover hr {
-  width: 100%;
+  width: 71%;
+  transition: none;
+  position: relative;
+  margin-right: 50px;
 }
 
 .shrink {
@@ -89,7 +89,7 @@
 .socialMediaLinks {
   display: flex;
   flex-direction: column;
-  margin-right: 49%;
+  margin-right: 47%;
   align-items: flex-start;
   margin-top: 0;
 }
@@ -117,12 +117,12 @@
 
 .socialMediaLinks hr {
   margin-top: -8px;
-  margin-bottom: 12px;
+  margin-bottom: 18px;
 }
 
 .socialMediaIcons {
   font-size: 30px;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .socialMediaIcon {
