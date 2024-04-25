@@ -36,14 +36,20 @@ function ImageSearch() {
 
   return (
     <div className={styles.mainContainer}>
+      <div className={styles.header}>
+        Imagesearch results for {query}{" "}
+        <div className={styles.headerUnderline} />
+      </div>
       <div className={styles.imagecontainer}>
         {imageResults.map((item, index) => (
-          <img
-            key={index}
-            src={item.urls.thumb}
-            alt={item.alt_description}
-            onClick={() => handleImageClick(index)}
-          />
+          <div className={styles.img}>
+            <img
+              key={index}
+              src={item.urls.thumb}
+              alt={item.alt_description}
+              onClick={() => handleImageClick(index)}
+            />{" "}
+          </div>
         ))}
       </div>
     </div>

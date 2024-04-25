@@ -1,23 +1,45 @@
-.maincontainer {
-  background-color: yellow;
+.mainContainer {
+  border-radius: 8px;
+  background-color: var(--background-color);
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  text-align: center;
+  font-size: 250%;
+  font-weight: 350;
+  position: relative;
+}
+.headerUnderline {
+  height: 2px;
+  background-color: white;
+  margin-top: 5px;
+  width: 100%;
 }
 
 .imagecontainer {
   display: flex;
-  justify-content: center;
+  overflow: auto;
   align-items: center;
-  max-width: 50%;
-  background-color: red;
-  height: 500px;
+  justify-content: center;
+  gap: 20px;
+  column-count: 2; /* Set the desired number of columns */
+  column-gap: 20px; /* Adjust the gap between columns */
+  flex-wrap: wrap;
 }
 
-.imagecontainer img {
+.img {
   margin-bottom: 10px;
-  max-width: 32%;
-  height: auto;
-  border-radius: 5px;
+  width: auto;
+  max-height: 500px;
   cursor: pointer;
   object-fit: cover; /* Alle Bilder werden proportional skaliert */
+  margin: 20px;
+  transition: box-shadow 0.3s ease;
 }
 
 .imagecontainer img:hover {
