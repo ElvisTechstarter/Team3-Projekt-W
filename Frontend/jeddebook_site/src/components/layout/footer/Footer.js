@@ -28,7 +28,7 @@ function Footer() {
       <div className={styles.footerTop}>
         <div className={styles.links}>
           Quicklinks
-          <hr />
+          <hr className={styles.separator1} />
           <div className={styles.footerLink}>
             <Link to="/" onClick={scrollToTop}>
               Homepage
@@ -43,7 +43,7 @@ function Footer() {
         <div className={styles.spacer}></div>
         <div className={styles.socialMediaLinks}>
           <p>Folge uns auf...</p>
-          <hr className={styles.separator} />
+          <hr className={styles.separator2} />
           <div className={styles.socialMediaIcons}>
             <Link
               to="https://www.facebook.com"
