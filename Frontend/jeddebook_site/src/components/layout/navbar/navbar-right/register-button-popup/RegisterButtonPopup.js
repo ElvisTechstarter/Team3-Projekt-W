@@ -46,7 +46,7 @@ function RegisterButtonPopup({ onClose, onRegisterSuccess }) {
       );
 
       if (response.status === 200) {
-        setRegistrationMessage("Registration successful!");
+        setRegistrationMessage("Registration successfull!");
         onRegisterSuccess();
         // Hier könntest du weitere Aktionen ausführen, z.B. den Benutzer weiterleiten
       } else {
@@ -65,13 +65,13 @@ function RegisterButtonPopup({ onClose, onRegisterSuccess }) {
   // External function to determine the Register message style
   const getRegisterMessageStyle = (registrationMessage) => {
     let backgroundColor = "";
-    if (registrationMessage === "Registration successful!") {
+    if (registrationMessage === "Registration successfull!") {
       backgroundColor = "var(--background-color)";
     } else {
       backgroundColor = "var(--secondary-color)";
     }
     const boxShadow =
-      registrationMessage === "Registration successful!"
+      registrationMessage === "Registration successfull!"
         ? "2px 2px 4px rgb(176, 176, 176);"
         : "";
     let display = "";
