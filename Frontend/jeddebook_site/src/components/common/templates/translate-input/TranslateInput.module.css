@@ -39,9 +39,10 @@
 
 /* Suggestions dropdown */
 .suggestionsList {
-  width: 57%;
+  box-sizing: border-box;
+  width: 60%;
   max-height: 200px;
-  overflow-y: auto;
+  overflow-y: hidden;
   background-color: #fff;
   border: 1px solid #ccc;
   border-top: none;
