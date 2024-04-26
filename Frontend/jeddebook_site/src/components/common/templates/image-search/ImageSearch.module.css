@@ -11,8 +11,8 @@
   flex-direction: column;
   color: white;
   text-align: center;
-  font-size: 250%;
-  font-weight: 350;
+  font-size: medium;
+  font-weight: 400;
   position: relative;
   padding: 5px;
 }
@@ -26,15 +26,14 @@
 .imagecontainer {
   display: flex;
   overflow: auto;
-  align-items: center;
+  align-items: first start;
   justify-content: center;
-  gap: 20px;
-  column-count: 2; /* Set the desired number of columns */
-  column-gap: 20px; /* Adjust the gap between columns */
   flex-wrap: wrap;
+  margin-bottom: 3%;
 }
 
 .img img {
+  flex: 1 1 25%;
   margin-bottom: 10px;
   border-radius: 16px;
   width: auto;

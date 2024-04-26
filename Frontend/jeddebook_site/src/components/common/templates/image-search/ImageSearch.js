@@ -37,7 +37,7 @@ function ImageSearch() {
   return (
     <div className={styles.mainContainer}>
       <div className={styles.header}>
-        Imagesearch results for {query}{" "}
+        Bildersuche Resultate für {query}{" "}
         <div className={styles.headerUnderline} />
       </div>
       <div className={styles.imagecontainer}>

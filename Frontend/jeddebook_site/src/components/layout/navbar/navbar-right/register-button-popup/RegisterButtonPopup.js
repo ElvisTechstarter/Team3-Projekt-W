@@ -3,7 +3,7 @@ import axios from "axios";
 import styles from "./RegisterButtonPopup.module.css";
 import StandardTextInput from "../../../../common/text-inputs/standard-ti/StandardTextInput";
 
-function RegisterButtonPopup({ onClose }) {
+function RegisterButtonPopup({ onClose, onRegisterSuccess }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [repassword, setRepassword] = useState("");
@@ -12,17 +12,26 @@ function RegisterButtonPopup({ onClose }) {
   const [attemptedRegistration, setAttemptedRegistration] = useState(false);
 
   const handleRegister = async () => {
-    if (attemptedRegistration) {
-      // Wenn bereits versucht wurde, sich zu registrieren, breche ab
+    if (
+      username === "" ||
+      password === "" ||
+      repassword === "" ||
+      email === ""
+    ) {
+      setRegistrationMessage("Fields cannot be empty");
       return;
     }
-
-    setAttemptedRegistration(true);
 
     if (repassword !== password) {
       setRegistrationMessage("Passwords don't match");
       return;
     }
+
+    if (attemptedRegistration) {
+      return;
+    }
+
+    setAttemptedRegistration(true);
 
     try {
       const body = {
@@ -38,6 +47,7 @@ function RegisterButtonPopup({ onClose }) {
 
       if (response.status === 200) {
         setRegistrationMessage("Registration successful!");
+        onRegisterSuccess();
         // Hier könntest du weitere Aktionen ausführen, z.B. den Benutzer weiterleiten
       } else {
         setRegistrationMessage("Registration failed. Please try again.");
@@ -51,6 +61,28 @@ function RegisterButtonPopup({ onClose }) {
   function onClickChild(event) {
     event.stopPropagation();
   }
+
+  // External function to determine the Register message style
+  const getRegisterMessageStyle = (registrationMessage) => {
+    let backgroundColor = "";
+    if (registrationMessage === "Registration successful!") {
+      backgroundColor = "var(--background-color)";
+    } else {
+      backgroundColor = "var(--secondary-color)";
+    }
+    const boxShadow =
+      registrationMessage === "Registration successful!"
+        ? "2px 2px 4px rgb(176, 176, 176);"
+        : "";
+    let display = "";
+    if (registrationMessage) {
+      display = "flex";
+    } else {
+      display = "none";
+    }
+
+    return { backgroundColor, boxShadow, display };
+  };
 
   return (
     <div className={styles.container} onClick={onClose}>
@@ -83,7 +115,12 @@ function RegisterButtonPopup({ onClose }) {
         <button onClick={handleRegister}>Complete Registration</button>
         <div style={{ height: "5px" }} />
         <button onClick={onClose}>Cancel</button>
-        {attemptedRegistration && <p>{registrationMessage}</p>}
+        <div
+          className={styles.registerMessage}
+          style={getRegisterMessageStyle(registrationMessage)}
+        >
+          {registrationMessage && <p>{registrationMessage}</p>}
+        </div>
       </div>
     </div>
   );

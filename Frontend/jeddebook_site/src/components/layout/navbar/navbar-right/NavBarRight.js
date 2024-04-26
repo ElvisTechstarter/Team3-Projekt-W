@@ -12,15 +12,13 @@ function NavBarRight() {
   const { isLoggedIn, setIsLoggedIn, logout } = useContext(AuthContext);
 
   const handleLogin = () => {
-
     setIsLoggedIn(true);
     setTimeout(() => setShowLoginButtonPopup(false), 3000);
-
   };
 
   const handleRegister = () => {
     setShowRegisterButtonPopup(true);
-    setShowLoginButtonPopup(false); // Login-Popup ausblenden
+    setTimeout(() => setShowRegisterButtonPopup(false), 3000);
   };
 
   const closePopups = () => {
@@ -53,7 +51,7 @@ function NavBarRight() {
       {showRegisterButtonPopup && (
         <RegisterButtonPopup
           onClose={() => setShowRegisterButtonPopup(false)}
-          onRegister={handleRegister}
+          onRegisterSuccess={handleRegister}
         />
       )}
 
@@ -67,24 +65,20 @@ function NavBarRight() {
           <div className={styles.buttonContainer}>
             <StandardBtn
               text={"Login"}
-
               onClick={() => {
                 closePopups();
                 setShowLoginButtonPopup(true);
               }}
-
               style={{ fontWeight: 500 }}
             />
           </div>
           <div className={styles.spacer} />
           <StandardBtn
             text={"Register"}
-
             onClick={() => {
               closePopups();
               setShowRegisterButtonPopup(true);
             }}
-
             style={{ fontWeight: 500 }}
           />
         </>

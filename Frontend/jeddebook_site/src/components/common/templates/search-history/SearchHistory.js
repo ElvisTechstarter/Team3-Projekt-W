@@ -37,11 +37,15 @@ function SearchHistory() {
           <h2>Suchverlauf:</h2>
           <hr />
           <ul>
-            {formattedSearchHistory.map((item, index) => (
-              <li key={index} onClick={() => handleItemClick(item)}>
-                {item}
-              </li>
-            ))}
+            <div className={styles.searchHistoryContainerList}>
+              {formattedSearchHistory.map((item, index) => (
+                <div>
+                  <li key={index} onClick={() => handleItemClick(item)}>
+                    {item}
+                  </li>
+                </div>
+              ))}
+            </div>
           </ul>
         </div>
       ) : (

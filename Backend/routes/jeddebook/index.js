@@ -137,7 +137,7 @@ JeddebookRouter.post("/byEntry", async (req, res) => {
     const userHistoryEntriesPromise = user_history.findAll({
       where: { userId: userID },
       attributes: ["user_history_entry"],
-      limit: 5,
+      limit: 6,
       order: [["createdAt", "DESC"]], // Order by createdAt in descending order
     });
 

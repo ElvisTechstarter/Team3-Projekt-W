@@ -26,7 +26,9 @@ function LoginButtonPopup({ onClose, onLoginSuccess, onRegister }) {
       backgroundColor = "var(--secondary-color)";
     }
     const boxShadow =
-      loginMessage === "Login successful!" ? "2px 2px 4px black" : "";
+      loginMessage === "Login successful!"
+        ? "2px 2px 4px rgb(176, 176, 176);"
+        : "";
     let display = "";
     if (loginMessage) {
       display = "flex";

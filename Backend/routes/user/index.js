@@ -21,7 +21,7 @@ UserRouter.get("/profile/userhistory", async (req, res) => {
     const userHistoryEntries = await user_history.findAll({
       where: { userId: queryid },
       attributes: ["user_history_entry"],
-      limit: 5,
+      limit: 6,
       order: [["createdAt", "DESC"]], // Order by createdAt in descending order
     });
     //console.log(userHistoryEntries);

@@ -15,11 +15,10 @@ function HomePage() {
           <TranslateOutput />
         </div>
       </div>
+      <SearchHistory isLoggedIn={true} />
       <div className={styles.imageSearchContainer}>
         <ImageSearch />
       </div>
-
-      <SearchHistory isLoggedIn={true} />
     </div>
   );
 }
