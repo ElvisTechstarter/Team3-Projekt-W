@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext } from "react";
-import axios from "axios";
 import AuthContext from "./AuthProvider";
+import { SearchMutations, SearchQueries } from "../apis/jeddebook/search";
 
 const SearchContext = createContext(null);
 
@@ -15,21 +15,13 @@ export const SearchProvider = ({ children }) => {
     try {
       if (isLoggedIn === false) {
         // Sende die Daten an deinen Express-Server
-        const response = await axios.get(
-          "http://localhost:5050/v1/jeddebook/byEntry",
-          {
-            params: { query: input },
-          }
-        );
+        const params = { query: input };
+        const response = await SearchQueries.getSearchResults(params);
         //console.log(response);
         setResponse(response);
       } else {
-        const response = await axios.post(
-          "http://localhost:5050/v1/jeddebook/byEntry",
-          {
-            params: { query: input, user: userID },
-          }
-        );
+        const body = { query: input, user: userID };
+        const response = await SearchMutations.postSearchResults(body);
         //console.log(response);
         setResponse(response);
         setUserHistory(response.data.userHistoryEntries);
@@ -43,12 +35,8 @@ export const SearchProvider = ({ children }) => {
   const handleSuggestions = async (inputValue, setSuggestions) => {
     if (inputValue < 2) return;
     try {
-      const response = await axios.get(
-        "http://localhost:5050/v1/jeddebook/suggestions",
-        {
-          params: { query: inputValue },
-        }
-      );
+      const params = { query: inputValue };
+      const response = await SearchQueries.getSuggestions(params);
       if (response) {
         //console.log(response);
         let tmp = [];

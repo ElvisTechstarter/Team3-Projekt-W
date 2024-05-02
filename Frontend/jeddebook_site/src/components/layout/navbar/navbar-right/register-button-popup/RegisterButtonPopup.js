@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import styles from "./RegisterButtonPopup.module.css";
 import StandardTextInput from "../../../../common/text-inputs/standard-ti/StandardTextInput";
 import { UserMutations } from "../../../../../apis/jeddebook/user";
