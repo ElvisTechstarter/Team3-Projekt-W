@@ -119,8 +119,9 @@ JeddebookRouter.get("/byEntry", async (req, res) => {
 // POST REQUESTS
 JeddebookRouter.post("/byEntry", async (req, res) => {
   //Extract the searchterm and userID
-  const searchQuery = req.body.params.query;
-  const userID = req.body.params.user;
+
+  const searchQuery = req.body.query;
+  const userID = req.body.user;
 
   try {
     if (!searchQuery) {

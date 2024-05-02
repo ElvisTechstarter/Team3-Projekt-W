@@ -1,8 +1,13 @@
 # Backend
 
-## Historie:
+# .env sollte nach download neu erstellt werden:
 
-TEST123
+PORT=5050
+DB*USERNAME= \_hier dein dbusername*
+DB*PASSWORD= \_hier dein db passwort*
+DB_NAME=jeddebook_app
+
+## Historie:
 
 Setup npm init
 Installed cors, dotenv, sequelize, body-parser, http-status-codes

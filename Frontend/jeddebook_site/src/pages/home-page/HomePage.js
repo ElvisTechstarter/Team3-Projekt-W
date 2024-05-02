@@ -1,8 +1,8 @@
 import styles from "./HomePage.module.css";
-import TranslateInput from "../../components/common/templates/translate-input";
-import TranslateOutput from "../../components/common/templates/translate-output";
-import SearchHistory from "../../components/common/templates/search-history";
-import ImageSearch from "../../components/common/templates/image-search";
+import TranslateInput from "../../components/translation-components/translate-input";
+import TranslateOutput from "../../components/translation-components/translate-output";
+import SearchHistory from "../../components/translation-components/search-history";
+import ImageSearch from "../../components/translation-components/image-search";
 
 function HomePage() {
   return (

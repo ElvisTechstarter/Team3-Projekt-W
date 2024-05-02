@@ -4,7 +4,7 @@ import StandardBtn from "../../../common/buttons/standard-btn";
 import styles from "./NavBarRight.module.css";
 import LoginButtonPopup from "./login-button-popup/LoginButtonPopup";
 import RegisterButtonPopup from "./register-button-popup/RegisterButtonPopup";
-import AuthContext from "../../../contexts/AuthProvider";
+import AuthContext from "../../../../contexts/AuthProvider";
 
 function NavBarRight() {
   const [showLoginButtonPopup, setShowLoginButtonPopup] = useState(false);

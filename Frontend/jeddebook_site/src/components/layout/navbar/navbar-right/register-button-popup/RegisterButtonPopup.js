@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
 import styles from "./RegisterButtonPopup.module.css";
 import StandardTextInput from "../../../../common/text-inputs/standard-ti/StandardTextInput";
+import { UserMutations } from "../../../../../apis/jeddebook/user";
 
 function RegisterButtonPopup({ onClose, onRegisterSuccess }) {
   const [username, setUsername] = useState("");
@@ -40,10 +40,7 @@ function RegisterButtonPopup({ onClose, onRegisterSuccess }) {
         newUserPW: password,
       };
 
-      const response = await axios.post(
-        "http://localhost:5050/v1/user/register",
-        body
-      );
+      const response = await UserMutations.registerUser(body);
 
       if (response.status === 200) {
         setRegistrationMessage("Registration successfull!");

@@ -1,5 +1,6 @@
 import React, { createContext, useState } from "react";
-import axios from "axios";
+import { UserQueries } from "../apis/jeddebook/user";
+import { UserMutations } from "../apis/jeddebook/user";
 
 // Erstellen des AuthContexts
 const AuthContext = createContext();
@@ -19,12 +20,8 @@ export const AuthProvider = ({ children }) => {
     try {
       // Sende die Daten an deinen Express-Server
       //console.log("request for userhistory with inputID=", inputID);
-      const response = await axios.get(
-        "http://localhost:5050/v1/user/profile/userhistory",
-        {
-          params: { userid: inputID },
-        }
-      );
+      const params = { userid: inputID };
+      const response = await UserQueries.getUserHistory(params);
       //console.log(response);
       setUserHistory(response.data.userHistoryEntries);
     } catch (error) {
@@ -40,10 +37,7 @@ export const AuthProvider = ({ children }) => {
         password,
       };
 
-      const response = await axios.post(
-        "http://localhost:5050/v1/user/login",
-        body
-      );
+      const response = await UserMutations.loginUser(body);
 
       //nutze die userid
       if (response.status === 200) {
