@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import styles from "./LoginButtonPopup.module.css";
 import StandardTextInput from "../../../../common/text-inputs/standard-ti/StandardTextInput";
-import AuthContext from "../../../../contexts/AuthProvider";
+import AuthContext from "../../../../../contexts/AuthProvider";
 
 function LoginButtonPopup({ onClose, onLoginSuccess, onRegister }) {
   const [username, setUsername] = useState("");

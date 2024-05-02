@@ -11,8 +11,8 @@ import Agbpage from "./pages/agb-page";
 import DatenschutzPage from "./pages/datenschutz-page";
 import Content from "./components/layout/content";
 import Footer from "./components/layout/footer";
-import { AuthProvider } from "./components/contexts/AuthProvider";
-import { SearchProvider } from "./components/contexts/SearchProvider";
+import { AuthProvider } from "./contexts/AuthProvider";
+import { SearchProvider } from "./contexts/SearchProvider";
 
 function App() {
   return (
