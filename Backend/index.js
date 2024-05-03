@@ -3,14 +3,9 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const { AppRouter } = require("./routes");
+const app = require("./src/server");
 
 const { PORT } = process.env;
-
-const app = express();
-app.use(bodyParser.json());
-app.use(cors());
-
-app.use("/v1", AppRouter);
 
 //Datenbank statt beispielset verwenden
 dbSequelize
