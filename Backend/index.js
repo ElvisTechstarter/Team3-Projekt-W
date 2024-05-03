@@ -1,8 +1,8 @@
-const dbSequelize = require("./database/setup/database");
+const dbSequelize = require("./src/database/setup/database");
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const { AppRouter } = require("./routes");
+const { AppRouter } = require("./src/routes");
 const app = require("./src/server");
 
 const { PORT } = process.env;

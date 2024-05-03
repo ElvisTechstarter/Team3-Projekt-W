@@ -2,6 +2,7 @@ const { StatusCodes, ReasonPhrases } = require("http-status-codes");
 const AccessTokens = require("../services/auth/AccessToken");
 
 function authMiddleWare(req, res, next) {
+  //console.log("headers= ", req.headers);
   const token = req.headers["x-access-token"];
   if (!token) {
     return res.status(StatusCodes.FORBIDDEN).send("No Token provided!");
